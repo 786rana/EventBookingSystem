@@ -1,0 +1,50 @@
+﻿@model EventBookingSystem.Models.User
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Event Booking System Registration</title>
+	<link rel="stylesheet" href="~/theme/login.css">
+
+
+</head>
+<body>
+
+	<section id="Login" class="Login">
+		<div class="main">
+
+			<h1>Event Booking system </h1>
+			<span style="color:red">@ViewBag.error</span>
+			<form action="/Account/Login" method="post">
+				<label for="first">
+					Username:
+				</label>
+				<input asp-for="Email" placeholder="Enter your Username" required>
+
+				<label for="password">
+					Password:
+				</label>
+				<input asp-for="Password" type="password" placeholder="Enter your Password" required>
+
+				<div class="wrap">
+					<button type="submit">
+						Login
+					</button>
+				</div>
+			</form>
+			<p>
+				Not registered?
+				<a href="/Account/User"
+				   style="text-decoration: inline ; display: inline;">
+					Create an account
+				</a>
+			</p>
+		</div>
+	</section>
+</body>
+
+</html>
