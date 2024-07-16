@@ -1,6 +1,7 @@
 ﻿using EventBookingSystem.Common;
 using EventBookingSystem.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventBookingSystem.Controllers
 {
@@ -48,11 +49,6 @@ namespace EventBookingSystem.Controllers
             {
                 _db.MarriageHalls.Add(h);
                 _db.SaveChanges();
-                foreach (var item in h.MarriageHallServices)
-                {
-                    item.MarriageHallId = h.Id;
-                    _db.MarriageHallServices.Add(item);
-                }
             }
          
             _db.SaveChanges();
@@ -60,7 +56,8 @@ namespace EventBookingSystem.Controllers
         }
         public IActionResult Edit(int id)
         {
-            MarriageHall x = _db.MarriageHalls.Find(id);
+            ViewBag.services = _db.Servicess.ToList();
+            MarriageHall x = _db.MarriageHalls.Include(x=>x.MarriageHallServices).Where(x=>x.Id==id).FirstOrDefault();
             return View("Marriage", x);
         }
         public IActionResult Delete(int id)
