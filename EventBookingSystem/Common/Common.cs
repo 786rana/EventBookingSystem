@@ -8,7 +8,6 @@ namespace EventBookingSystem.Common
     {
         session.SetString(key, JsonConvert.SerializeObject(value));
     }
-
     public static T GetObjectFromJson<T>(this ISession session, string key)
     {
         var value = session.GetString(key);
