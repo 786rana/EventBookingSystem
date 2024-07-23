@@ -18,6 +18,7 @@ namespace EventBookingSystem.Models
         public DbSet<Services> Servicess { get; set; }
         public DbSet<MarriageHallServices> MarriageHallServices { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
         
     }
 }

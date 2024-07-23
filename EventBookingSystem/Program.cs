@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<EventDbContext>
-    (options => options.UseSqlServer(builder.Configuration.GetConnectionString("Event")));
+    (options => options.UseSqlServer(builder.Configuration.GetConnectionString("EBS")));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession(options =>
