@@ -37,7 +37,7 @@ namespace EventBookingSystem.Controllers
             {
                 HttpContext.Session.SetObjectAsJson("login", user);
                 return RedirectToAction("Index", "Home");
-            }
+            }   
         }
         public IActionResult User()
         {

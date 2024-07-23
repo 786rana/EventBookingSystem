@@ -5,67 +5,63 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EventBookingSystem.Controllers
 {
-    public class MarriageHallController : Controller
+
+    public class OrderController : Controller
     {
         private readonly EventDbContext _db;
 
-        public MarriageHallController(EventDbContext db)
+        public OrderController(EventDbContext db)
         {
             _db = db;
         }
         public IActionResult Index()
         {
-            List<MarriageHall> x = _db.MarriageHalls.ToList();
+            List<Order> x = _db.Orders.ToList();
             return View(x);
         }
-        public IActionResult Marriage()
+        public IActionResult Create ()
         {
-            //User x = HttpContext.Session.GetObjectFromJson<User>("login");
-
-            //if (x == null)
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
-
-            ViewBag.services=_db.Servicess.ToList();
+            ViewBag.services = _db.Servicess.ToList();
+            ViewBag.MarriageHalls = _db.MarriageHalls.ToList();
             return View();
         }
-        [HttpPost]
-        public IActionResult Save(MarriageHall h)
+        public IActionResult Order(Order a)
         {
             User x = HttpContext.Session.GetObjectFromJson<User>("login");
             if (x == null)
             {
                 return RedirectToAction("Index", "Home");
             }
-            h.UserId = x.Id;
+            a.UserId = x.Id;
 
-            if (h.Id> 0)
+            if (a.Id > 0)
             {
-                _db.MarriageHalls.Update(h);
+                _db.Orders.Update(a);
             }
             else
             {
-                _db.MarriageHalls.Add(h);
+                _db.Orders.Add(a);
                 _db.SaveChanges();
             }
-         
-            _db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-        public IActionResult Edit(int id)
-        {
-            ViewBag.services = _db.Servicess.ToList();
-            MarriageHall x = _db.MarriageHalls.Include(x=>x.MarriageHallServices).Where(x=>x.Id==id).FirstOrDefault();
-            return View("Marriage", x);
-        }
-        public IActionResult Delete(int id)
-        {
-            MarriageHall x = _db.MarriageHalls.Find(id);
-            _db.MarriageHalls.Remove(x);
+
             _db.SaveChanges();
             return RedirectToAction("Index");
 
         }
+        public IActionResult Edit(int id) 
+        {
+            ViewBag.services = _db.Servicess.ToList();
+            ViewBag.MarriageHalls = _db.MarriageHalls.ToList();
+             //Order x = _db.Orders.Include(x => x.OrderDetail).Where(x => x.Id == id).FirstOrDefault();
+            return View();
+        }
+        public IActionResult Delete(int id)
+        {
+            Order x= _db.Orders.Find(id);
+            _db.Orders.Remove(x);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        
     }
 }
