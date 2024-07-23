@@ -1,19 +1,25 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
 
-namespace EventBookingSystem.Models
+namespace EventBookingSystem.Models;
+
+public partial class MarriageHall
 {
-    public class MarriageHall
-    {
-        [Key]
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Phone { get; set; }
-        public string Location { get; set; }
-        public string Price { get; set; }
-        public string Details { get; set; }
-        public int UserId { get; set; }
-        public  User User { get; set; }
-        public ICollection<MarriageHallServices> MarriageHallServices { get; set; } 
+    public int Id { get; set; }
 
-    }
+    public string Name { get; set; } = null!;
+
+    public string Phone { get; set; } = null!;
+
+    public string Location { get; set; } = null!;
+
+    public string Price { get; set; } = null!;
+
+    public string Details { get; set; } = null!;
+
+    public int UserId { get; set; }
+
+    public virtual ICollection<MarriageHallService> MarriageHallServices { get; set; } = new List<MarriageHallService>();
+
+    public virtual User User { get; set; } = null!;
 }

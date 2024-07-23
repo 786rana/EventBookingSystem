@@ -6,9 +6,9 @@ namespace EventBookingSystem.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly EventDbContext _db;
+        private readonly EventBookingSystemOrg10Context _db;
 
-        public AccountController(EventDbContext db)
+        public AccountController(EventBookingSystemOrg10Context db)
         {
             _db = db;
         }

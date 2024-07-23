@@ -2,7 +2,7 @@ using EventBookingSystem.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<EventDbContext>
+builder.Services.AddDbContext<EventBookingSystemOrg10Context>
     (options => options.UseSqlServer(builder.Configuration.GetConnectionString("EBS")));
 // Add services to the container.
 builder.Services.AddControllersWithViews();

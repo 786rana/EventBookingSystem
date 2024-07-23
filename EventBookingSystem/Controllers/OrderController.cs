@@ -8,9 +8,9 @@ namespace EventBookingSystem.Controllers
 
     public class OrderController : Controller
     {
-        private readonly EventDbContext _db;
+        private readonly EventBookingSystemOrg10Context _db;
 
-        public OrderController(EventDbContext db)
+        public OrderController(EventBookingSystemOrg10Context db)
         {
             _db = db;
         }
@@ -21,10 +21,12 @@ namespace EventBookingSystem.Controllers
         }
         public IActionResult Create ()
         {
-            ViewBag.services = _db.Servicess.ToList();
+            ViewBag.services = _db.Servicesses.ToList();
             ViewBag.MarriageHalls = _db.MarriageHalls.ToList();
+          
+
             return View();
-        }
+        }   
         public IActionResult Order(Order a)
         {
             User x = HttpContext.Session.GetObjectFromJson<User>("login");
@@ -50,9 +52,8 @@ namespace EventBookingSystem.Controllers
         }
         public IActionResult Edit(int id) 
         {
-            ViewBag.services = _db.Servicess.ToList();
+            ViewBag.servicess = _db.Servicesses.ToList();
             ViewBag.MarriageHalls = _db.MarriageHalls.ToList();
-             //Order x = _db.Orders.Include(x => x.OrderDetail).Where(x => x.Id == id).FirstOrDefault();
             return View();
         }
         public IActionResult Delete(int id)

@@ -7,9 +7,9 @@ namespace EventBookingSystem.Controllers
 {
     public class MarriageHallController : Controller
     {
-        private readonly EventDbContext _db;
+        private readonly EventBookingSystemOrg10Context _db;
 
-        public MarriageHallController(EventDbContext db)
+        public MarriageHallController(EventBookingSystemOrg10Context db)
         {
             _db = db;
         }
@@ -27,7 +27,7 @@ namespace EventBookingSystem.Controllers
             //    return RedirectToAction("Index", "Home");
             //}
 
-            ViewBag.services=_db.Servicess.ToList();
+            ViewBag.services=_db.Servicesses.ToList();
             return View();
         }
         [HttpPost]
@@ -55,7 +55,7 @@ namespace EventBookingSystem.Controllers
         }
         public IActionResult Edit(int id)
         {
-            ViewBag.services = _db.Servicess.ToList();
+            ViewBag.services = _db.Servicesses.ToList();
             MarriageHall x = _db.MarriageHalls.Include(x=>x.MarriageHallServices).Where(x=>x.Id==id).FirstOrDefault();
             return View("Marriage", x);
         }
