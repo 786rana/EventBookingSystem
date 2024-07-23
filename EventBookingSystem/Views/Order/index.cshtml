@@ -1,0 +1,35 @@
+﻿@model List<EventBookingSystem.Models.Order>
+<h2>
+    <a href="/Order/Create"><input type="button" value="Add Order" class="btn btn-primary" /></a>
+</h2>
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>UserId</td>
+            <td>NetAmount</td>
+            <td>DateTime CreatedDate</td>
+            <td>Discount</td>
+            <td>Total</td>
+            <td>Actions:</td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Ebs in Model)
+        {
+            <tr>
+                <td>@Ebs.Id</td>
+                <td>@Ebs.UserId</td>
+                <td>@Ebs.NetAmount</td>
+                <td>@Ebs.CreatedDate</td>
+                <td>@Ebs.Discount</td>
+                <td>@Ebs.Total</td>
+                <td>
+                    <a href="/MarriageHall/Edit?Id=@Ebs.Id"><input type="button" value="Edit" class="btn  btn-primary" /></a>
+                    <a href="/MarriageHall/Delete?Id=@Ebs.Id"><input type="button" value="Delete" class="btn btn-danger" /></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
