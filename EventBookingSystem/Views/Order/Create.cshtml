@@ -1,27 +1,29 @@
 ﻿@model Order
 
 @{
-    List<OrderDetail> Ser = (List<OrderDetail>)ViewBag.OrderDetail;
+
+    List<MarriageHall> mhs = (List<MarriageHall>)ViewBag.MarriageHalls;
+    List<Servicess> ser = (List<Servicess>)ViewBag.services;
 }
 <section id="_contact" class="contact">
     <div class="container" data-aos="fade-up">
         <div class="row gx-lg-0 gy-4">
             <div class="col-lg-12">
                 <h2 class="text-center">New Order</h2><br />
-                <form action="#" id="marriageHallForm" method="post" role="form" class="php-email-form">
+                <form action="/Order/Save" id="mForm" method="post" role="form" class="php-email-form">
                     <div class="row">
                         <input type="hidden" asp-for="Id" />
                         <div class="col-md-4 form-group">
                             <label for="UserId">User</label>
-                            <input asp-for="UserId" class="form-control"  required>
+                            <input asp-for="UserId" class="form-control" required>
                         </div>
                         <div class="col-md-4 form-group mt-3 mt-md-0">
                             <label for="NetAmount">Net Amount</label>
-                            <input asp-for="NetAmount" class="form-control"  required>
+                            <input asp-for="NetAmount" class="form-control" required>
                         </div>
                         <div class="col-md-4 form-group mt-6 mt-md-0">
                             <label for="CreatedDate">Date</label>
-                            <input asp-for="CreatedDate" class="form-control"  required>
+                            <input asp-for="CreatedDate" class="form-control" required>
                         </div>
                     </div>
                     <div class="row">
@@ -31,20 +33,124 @@
                         </div>
                         <div class="col-md-4 form-group mt-3 mt-md-0">
                             <label for="Details">Detail</label>
-                            <input asp-for="Total" class="form-control"  required>
+                            <input asp-for="Total" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-12 pull-right">
-                        <input type="button" value="Add" class="btn btn-primary" />
+                        <a href=""><input type="button" value="Add" class="btn btn-primary" /></a>
                     </div>
-                    
-                    <div class="row">
-                        <div class="col-md-4 form-group">
-                            
-                        </div>
+                    <div class="col-md-12">
+                        <table id="tableId" class="table table-bordered table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Price</th>
+                                </tr>
+                                <tr>
+                                    <th>Marriage Hall</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @* Edit Case *@
+                                @if (Model != null && Model.Id > 0 && Model.OrderDetails != null && Model.OrderDetails.Count > 0)
+                                {
+                                    foreach (var Ebs in Model.OrderDetails)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <input type="hidden" class="orderDetailId" value="@Ebs.Id" />
+                                                <select class="form-control MarriagesHallId">
+                                                    <option value="0">Select</option>
+                                                    @if (mhs != null)
+                                                    {
+                                                        foreach (var item in mhs)
+                                                        {
+                                                            if (Ebs.Id == item.Id)
+                                                            {
+                                                                <option selected value="@item.Id">@item.Name</option>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@item.Id">@item.Name</option>
+                                                            }
+                                                        }
+
+                                                    }
+
+                                                </select>
+                                            </td>
+
+                                            <td>
+                                                <select class="form-control serviceId">
+                                                    <option value="0">Select</option>
+                                                    @if (ser != null)
+                                                    {
+                                                        foreach (var item in ser)
+                                                        {
+                                                            if (Ebs.Id == item.Id)
+                                                            {
+                                                                <option selected value="@item.Id">@item.Name</option>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@item.Id">@item.Name</option>
+                                                            }
+                                                        }
+
+                                                    }
+
+                                                </select>
+                                            </td>
+
+                                            <td><input type="text" value="@Ebs.Price" class="form-control price" /></td>
+                                            <input>
+                                        </tr>
+
+                                    }
+                                }
+                                else @* Create Record *@
+                                {
+                                    <tr>
+                                        <td>
+                                            <input type="hidden" class="orderDetailId" value="0" />
+                                            <select class="form-control MarriagesHallId">
+                                                <option value="0">Select</option>
+                                                @if (mhs != null)
+                                                {
+                                                    foreach (var item in mhs)
+                                                    {
+                                                        <option value="@item.Id">@item.Name</option>
+                                                    }
+
+                                                }
+
+                                            </select>
+                                        </td>
+
+                                        <td>
+                                            <select class="form-control serviceId">
+                                                <option value="0">Select</option>
+                                                @if (ser != null)
+                                                {
+                                                    foreach (var item in ser)
+                                                    {
+                                                        <option value="@item.Id">@item.Name</option>
+                                                    }
+
+                                                }
+
+                                            </select>
+                                        </td>
+                                        <td><input type="text" class="form-control price" /></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
                     </div>
 
-                   
                     <div class="text-left"><button type="submit">Save</button></div>
                 </form>
             </div><!-- End Contact Form -->

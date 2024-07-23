@@ -5,14 +5,14 @@ namespace EventBookingSystem.Controllers
 {
     public class ServicesController : Controller
     {
-        private readonly EventDbContext _db;
-        public ServicesController(EventDbContext db)
+        private readonly EventBookingSystemOrg10Context _db;
+        public ServicesController(EventBookingSystemOrg10Context db)
         {
             _db = db;
         }
         public IActionResult Index()
         {
-            List<Services> x = _db.Servicess.ToList();
+            List<Servicess> x = _db.Servicesses.ToList();
             return View(x);
         }
         public IActionResult Create() 
@@ -20,29 +20,29 @@ namespace EventBookingSystem.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Save(Services x) 
+        public IActionResult Save(Servicess x) 
         {
             if (x.Id> 0) 
             {
-                _db.Servicess.Update(x);
+                _db.Servicesses.Update(x);
             }
             else
             {
-                _db.Servicess.Add(x);
+                _db.Servicesses.Add(x);
             }
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
         public IActionResult Edit(int id)
         {
-            Services x = _db.Servicess.Find(id);
+            Servicess x = _db.Servicesses.Find(id);
             return View("Create", x);
 
         }
         public IActionResult Delete(int id) 
         {
-            Services x = _db.Servicess.Find(id);
-            _db.Servicess.Remove(x);
+            Servicess x = _db.Servicesses.Find(id);
+            _db.Servicesses.Remove(x);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
