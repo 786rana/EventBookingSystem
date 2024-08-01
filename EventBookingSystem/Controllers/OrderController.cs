@@ -1,6 +1,7 @@
 ﻿using EventBookingSystem.Common;
 using EventBookingSystem.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventBookingSystem.Controllers
@@ -16,53 +17,62 @@ namespace EventBookingSystem.Controllers
         }
         public IActionResult Index()
         {
-            List<Order> x = _db.Orders.ToList();
-            return View(x);
+            User user = HttpContext.Session.GetObjectFromJson<User>("login");
+            if (user == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            List<Order> orders = _db.Orders.Where(x => x.UserId == user.Id).ToList();
+            return View(orders);
         }
-        public IActionResult Create ()
+        public IActionResult Create()
         {
             ViewBag.services = _db.Servicesses.ToList();
-            ViewBag.MarriageHalls = _db.MarriageHalls.ToList();
-          
-
+            var marriageHalls = _db.MarriageHalls.ToList();
+            ViewBag.MarriageHalls = new SelectList(marriageHalls, "Id", "Name");
             return View();
-        }   
-        public IActionResult Order(Order a)
+        }
+        public IActionResult Edit(int Id)
+        {
+            var order = _db.Orders.Include(x => x.OrderDetails).Where(x => x.Id == Id).FirstOrDefault();
+
+            ViewBag.MarriageHalls = _db.MarriageHalls.ToList();
+            ViewBag.services = _db.Servicesses.ToList();
+
+            return View("Create", order);
+        }
+
+        public IActionResult Order(Order model)
         {
             User x = HttpContext.Session.GetObjectFromJson<User>("login");
             if (x == null)
             {
                 return RedirectToAction("Index", "Home");
             }
-            a.UserId = x.Id;
-
-            if (a.Id > 0)
+            model.UserId = x.Id;
+            model.CreatedDate = DateTime.Now;
+            if (model.Id > 0)
             {
-                _db.Orders.Update(a);
+                _db.Orders.Update(model);
             }
             else
             {
-                _db.Orders.Add(a);
-                _db.SaveChanges();
+                _db.Orders.Add(model);
+
             }
 
             _db.SaveChanges();
             return RedirectToAction("Index");
 
         }
-        public IActionResult Edit(int id) 
-        {
-            ViewBag.servicess = _db.Servicesses.ToList();
-            ViewBag.MarriageHalls = _db.MarriageHalls.ToList();
-            return View();
-        }
+
         public IActionResult Delete(int id)
         {
-            Order x= _db.Orders.Find(id);
+            Order x = _db.Orders.Find(id);
             _db.Orders.Remove(x);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-        
+
     }
 }

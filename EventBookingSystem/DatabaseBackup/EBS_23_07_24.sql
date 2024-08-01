@@ -119,8 +119,6 @@ CREATE TABLE [dbo].[Users](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20240723094114_ebs19', N'7.0.14')
-GO
 SET IDENTITY_INSERT [dbo].[MarriageHalls] ON 
 GO
 INSERT [dbo].[MarriageHalls] ([Id], [Name], [Phone], [Location], [Price], [Details], [UserId]) VALUES (1, N'Abdullah', N'03466566828', N'Sialkot', N'5000000', N'lahore lahore e jnb', 1)

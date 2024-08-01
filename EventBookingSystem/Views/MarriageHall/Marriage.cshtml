@@ -25,10 +25,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 form-group">
+                        @* <div class="col-md-4 form-group">
                             <label for="Price">Price</label>
                             <input asp-for="Price" class="form-control" placeholder=" Enter Your Price" required>
-                        </div>
+                        </div> *@
                         <div class="col-md-4 form-group mt-3 mt-md-0">
                             <label for="Details">Detail</label>
                             <input asp-for="Details" class="form-control" placeholder="Enter Your Details" required>
@@ -46,6 +46,7 @@
                                     <tr>
                                         <td>Service</td>
                                         <td>Price</td>
+                                        <td></td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -72,9 +73,10 @@
                                                     </select>
                                                 </td>
                                                 <td><input type="text" value="@item.Price" class="form-control price" /> </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger delete">Delete</button>
+                                                </td>
                                             </tr>
-
-
                                         }
                                     }
                                     else
@@ -91,6 +93,9 @@
                                                 </select>
                                             </td>
                                             <td><input type="text" class="form-control price" /> </td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger delete">Delete</button>
+                                            </td>
                                         </tr>
                                     }
                                 </tbody>
@@ -142,6 +147,13 @@
             });
 
             form.off('submit').submit();
+        });
+
+        $('body').on('click', '.delete', function () {
+            if ($('#tblDetail tbody tr').length > 1) {
+                let _row = $(this).closest('tr');
+                _row.remove();
+            }
         });
     });
 </script>

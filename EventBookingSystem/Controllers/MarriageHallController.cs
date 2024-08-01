@@ -15,7 +15,12 @@ namespace EventBookingSystem.Controllers
         }
         public IActionResult Index()
         {
-            List<MarriageHall> x = _db.MarriageHalls.ToList();
+            User user = HttpContext.Session.GetObjectFromJson<User>("login");
+            if (user == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            List<MarriageHall> x = _db.MarriageHalls.Where(x => x.UserId == user.Id).ToList();
             return View(x);
         }
         public IActionResult Marriage()

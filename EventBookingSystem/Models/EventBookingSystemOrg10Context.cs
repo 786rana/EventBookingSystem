@@ -44,20 +44,29 @@ public partial class EventBookingSystemOrg10Context : DbContext
         {
             entity.HasIndex(e => e.MarriageHallId, "IX_MarriageHallServices_MarriageHallId");
 
-            entity.HasIndex(e => e.OrderId, "IX_MarriageHallServices_OrderId");
-
             entity.HasOne(d => d.MarriageHall).WithMany(p => p.MarriageHallServices).HasForeignKey(d => d.MarriageHallId);
+
+            entity.HasOne(d => d.Service).WithMany(p => p.MarriageHallServices)
+                .HasForeignKey(d => d.ServiceId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_MarriageHallServices_Servicess");
         });
 
         modelBuilder.Entity<Order>(entity =>
         {
+            entity.Property(e => e.BalanceAmount).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.CreatedDate).HasColumnType("datetime");
-            entity.Property(e => e.Discount).HasColumnType("decimal(18, 2)");
-            entity.Property(e => e.Name)
-                .HasMaxLength(50)
-                .IsUnicode(false);
+            entity.Property(e => e.EndDate).HasColumnType("datetime");
             entity.Property(e => e.NetAmount).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.PaidAmount).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.Remarks).IsUnicode(false);
+            entity.Property(e => e.StartDate).HasColumnType("datetime");
+            entity.Property(e => e.Tip).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.Total).HasColumnType("decimal(18, 2)");
+
+            entity.HasOne(d => d.MarriageHall).WithMany(p => p.Orders)
+                .HasForeignKey(d => d.MarriageHallId)
+                .HasConstraintName("FK_Orders_MarriageHalls");
 
             entity.HasOne(d => d.User).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.UserId)
@@ -70,6 +79,7 @@ public partial class EventBookingSystemOrg10Context : DbContext
             entity.HasIndex(e => e.OrderId, "IX_OrderDetails_OrderId");
 
             entity.Property(e => e.Amount).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
 
             entity.HasOne(d => d.Order).WithMany(p => p.OrderDetails).HasForeignKey(d => d.OrderId);
         });

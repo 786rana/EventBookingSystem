@@ -13,7 +13,7 @@ public partial class MarriageHallService
 
     public int Price { get; set; }
 
-    public int? OrderId { get; set; }
-
     public virtual MarriageHall MarriageHall { get; set; } = null!;
+
+    public virtual Servicess Service { get; set; } = null!;
 }

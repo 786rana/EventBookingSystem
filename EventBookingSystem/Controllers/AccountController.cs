@@ -43,6 +43,12 @@ namespace EventBookingSystem.Controllers
         {
             return View();
         }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.SetObjectAsJson("login", null);
+            return RedirectToAction("Index", "Home");
+        }
         [HttpPost]
         public IActionResult User(User a)
         {

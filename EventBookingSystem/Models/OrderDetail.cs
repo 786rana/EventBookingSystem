@@ -11,11 +11,9 @@ public partial class OrderDetail
 
     public int ServiceId { get; set; }
 
-    public int MarriageHallId { get; set; }
-
     public int Quantity { get; set; }
 
-    public int Price { get; set; }
+    public decimal Price { get; set; }
 
     public decimal Amount { get; set; }
 

@@ -10,4 +10,6 @@ public partial class Servicess
     public string Name { get; set; } = null!;
 
     public int Price { get; set; }
+
+    public virtual ICollection<MarriageHallService> MarriageHallServices { get; set; } = new List<MarriageHallService>();
 }

@@ -1,8 +1,6 @@
 ﻿@model Order
 
 @{
-
-    List<MarriageHall> mhs = (List<MarriageHall>)ViewBag.MarriageHalls;
     List<Servicess> ser = (List<Servicess>)ViewBag.services;
 }
 <section id="_contact" class="contact">
@@ -10,34 +8,42 @@
         <div class="row gx-lg-0 gy-4">
             <div class="col-lg-12">
                 <h2 class="text-center">New Order</h2><br />
-                <form action="/Order/Save" id="mForm" method="post" role="form" class="php-email-form">
+                <form action="/Order/Order" id="mForm" method="post" role="form" class="php-email-form">
                     <div class="row">
                         <input type="hidden" asp-for="Id" />
                         <div class="col-md-4 form-group">
-                            <label for="UserId">User</label>
-                            <input asp-for="UserId" class="form-control" required>
+                            <label for="Total">Marriage Hall</label>
+
+                            <select asp-for="MarriageHallId" asp-items="ViewBag.MarriageHalls" class="form-control">
+                                <option value="0">Select</option>
+                            </select>
                         </div>
-                        <div class="col-md-4 form-group mt-3 mt-md-0">
-                            <label for="NetAmount">Net Amount</label>
-                            <input asp-for="NetAmount" class="form-control" required>
-                        </div>
-                        <div class="col-md-4 form-group mt-6 mt-md-0">
-                            <label for="CreatedDate">Date</label>
-                            <input asp-for="CreatedDate" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-4 form-group">
-                            <label for="Discount">Discount</label>
-                            <input asp-for="Discount" class="form-control" required>
+                            <label for="Total">Start Date</label>
+                            <input asp-for="StartDate" class="form-control" required>
                         </div>
-                        <div class="col-md-4 form-group mt-3 mt-md-0">
-                            <label for="Details">Detail</label>
-                            <input asp-for="Total" class="form-control" required>
+                        <div class="col-md-4 form-group">
+                            <label for="Total">End Date</label>
+                            <input asp-for="EndDate" class="form-control" required>
                         </div>
+                        <div class="col-md-4 form-group">
+                            <label for="Total">Total</label>
+                            <input asp-for="Total" class="form-control" required readonly>
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label for="Tip">Tip</label>
+                            <input asp-for="Tip" class="form-control" required>
+                        </div>
+
+
+                        <div class="col-md-4 form-group">
+                            <label for="NetAmount">Net Amount</label>
+                            <input asp-for="NetAmount" class="form-control" required readonly>
+                        </div>
+
                     </div>
                     <div class="col-md-12 pull-right">
-                        <a href=""><input type="button" value="Add" class="btn btn-primary" /></a>
+                        <input type="button" id="tbId" value="Add" class="btn btn-primary" />
                     </div>
                     <div class="col-md-12">
                         <table id="tableId" class="table table-bordered table-sm">
@@ -45,10 +51,9 @@
                                 <tr>
                                     <th>Service</th>
                                     <th>Price</th>
-                                </tr>
-                                <tr>
-                                    <th>Marriage Hall</th>
-                                    <th>Price</th>
+                                    <th>Qty</th>
+                                    <th>Total</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,39 +65,16 @@
                                         <tr>
                                             <td>
                                                 <input type="hidden" class="orderDetailId" value="@Ebs.Id" />
-                                                <select class="form-control MarriagesHallId">
-                                                    <option value="0">Select</option>
-                                                    @if (mhs != null)
-                                                    {
-                                                        foreach (var item in mhs)
-                                                        {
-                                                            if (Ebs.Id == item.Id)
-                                                            {
-                                                                <option selected value="@item.Id">@item.Name</option>
 
-                                                            }
-                                                            else
-                                                            {
-                                                                <option value="@item.Id">@item.Name</option>
-                                                            }
-                                                        }
-
-                                                    }
-
-                                                </select>
-                                            </td>
-
-                                            <td>
                                                 <select class="form-control serviceId">
-                                                    <option value="0">Select</option>
+                                                    <option>Select</option>
                                                     @if (ser != null)
                                                     {
                                                         foreach (var item in ser)
                                                         {
-                                                            if (Ebs.Id == item.Id)
+                                                            if (Ebs.ServiceId == item.Id)
                                                             {
-                                                                <option selected value="@item.Id">@item.Name</option>
-
+                                                                <option selected data-price= value="@item.Id">@item.Name</option>
                                                             }
                                                             else
                                                             {
@@ -106,7 +88,11 @@
                                             </td>
 
                                             <td><input type="text" value="@Ebs.Price" class="form-control price" /></td>
-                                            <input>
+                                            <td><input type="text" value="@Ebs.Quantity" class="form-control qty" /></td>
+                                            <td><input type="text" value="@Ebs.Amount" class="form-control amount" readonly /></td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger delete">Delete</button>
+                                            </td>
                                         </tr>
 
                                     }
@@ -116,21 +102,6 @@
                                     <tr>
                                         <td>
                                             <input type="hidden" class="orderDetailId" value="0" />
-                                            <select class="form-control MarriagesHallId">
-                                                <option value="0">Select</option>
-                                                @if (mhs != null)
-                                                {
-                                                    foreach (var item in mhs)
-                                                    {
-                                                        <option value="@item.Id">@item.Name</option>
-                                                    }
-
-                                                }
-
-                                            </select>
-                                        </td>
-
-                                        <td>
                                             <select class="form-control serviceId">
                                                 <option value="0">Select</option>
                                                 @if (ser != null)
@@ -139,12 +110,16 @@
                                                     {
                                                         <option value="@item.Id">@item.Name</option>
                                                     }
-
                                                 }
-
                                             </select>
                                         </td>
                                         <td><input type="text" class="form-control price" /></td>
+                                        <td><input type="text" value="1" class="form-control qty" /></td>
+                                        <td><input type="text" class="form-control amount" readonly /></td>
+
+                                        <td>
+                                            <button type="button" class="btn btn-danger delete">Delete</button>
+                                        </td>
                                     </tr>
                                 }
                             </tbody>
@@ -159,3 +134,129 @@
 
     </div>
 </section><!-- End Contact Section -->
+
+<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tbId').click(function () {
+            // Clone the last row of the table body
+            let _row = $('#tableId tbody tr:last').clone();
+
+            // Clear the values in the cloned row
+            _row.find('input').val('');
+            _row.find('select').prop('selectedIndex', 0);
+            _row.find('.qty').val(1);
+            // Append the cloned row to the table body
+            $('#tableId tbody').append(_row);
+        });
+
+        $('#mForm').submit(function (e) {
+            // Prevent default form submission
+            e.preventDefault();
+
+            // Get the form
+            var form = $(this);
+
+            // Iterate over each row in the table
+            $('#tableId tbody tr').each(function (index, row) {
+                let serviceId = $(row).find('.serviceId').val();
+                let price = $(row).find('.price').val();
+                let qty = $(row).find('.qty').val();
+                let amount = $(row).find('.amount').val();
+                let id = $(row).find('.orderDetailId').val();
+                // Append hidden inputs for each detail row
+                form.append('<input type="hidden" name="OrderDetails[' + index + '].Id" value="' + id + '" />');
+                form.append('<input type="hidden" name="OrderDetails[' + index + '].ServiceId" value="' + serviceId + '" />');
+                form.append('<input type="hidden" name="OrderDetails[' + index + '].Price" value="' + price + '" />');
+                form.append('<input type="hidden" name="OrderDetails[' + index + '].Quantity" value="' + qty + '" />');
+                form.append('<input type="hidden" name="OrderDetails[' + index + '].Amount" value="' + amount + '" />');
+            });
+            form.off('submit').submit();
+        });
+
+        $('body').on('change', '#MarriageHallId', function () {
+            debugger;
+            let _row = $('#tableId tbody tr:first')
+
+            var ServiceDropdown = $(_row).find('.serviceId');
+            ServiceDropdown.empty().append('<option value="">Select Service</option>');
+
+            $.ajax({
+                url: '/Services/GetByMarriageHall?id=' + $('#MarriageHallId').val(),
+                type: 'get',
+                async: false,
+                success: function (data) {
+                    if (data != null && data.result != null && data.result.length > 0) {
+                        for (let i = 0; i < data.result.length; i++) {
+                            ServiceDropdown.append('<option data-price="' + data.result[i].price + '" value="' + data.result[i].id + '">' + data.result[i].name + '</option>');
+                        }
+                    }
+
+                }
+            });
+        });
+        $('body').on('change', '.serviceId', function () {
+            debugger;
+            let _row = $(this).closest('tr');
+            let selectedOption = $(this).find('option:selected');
+            let price = selectedOption.attr('data-price');
+            $(_row).find('.price').val(price);
+            calculateTotalAmount();
+        });
+
+
+        function calculateTotalAmount() {
+            let _totalAmount = 0;
+            $('#tableId tbody tr').each(function (index, row) {
+                let price = $(row).find('.amount').val();
+                _totalAmount += parseFloat(price);
+            });
+            $('#Total').val(_totalAmount);
+
+            let _Tip = $('#Tip').val();
+            if (_Tip == null || _Tip == '') {
+                _Tip = 0;
+            }
+
+            $('#NetAmount').val(_totalAmount + parseFloat(_Tip));
+        }
+
+        $('body').on('keyup', '#Tip', function () {
+            let _totalAmount = $('#Total').val();
+            if (_totalAmount == null || _totalAmount == '') {
+                _totalAmount = 0;
+            } else {
+                _totalAmount = parseFloat(_totalAmount);
+            }
+
+            let _Tip = $('#Tip').val();
+            if (_Tip == null || _Tip == '') {
+                _Tip = 0;
+            }
+
+            $('#NetAmount').val(_totalAmount + parseFloat(_Tip));
+
+        });
+
+        $('body').on('keyup', '.price, .qty', function () {
+            let _row = $(this).closest('tr');
+            calculateRowAmount(_row);
+            calculateTotalAmount();
+        });
+
+        function calculateRowAmount(row) {
+            let _price = parseFloat($(row).find('.price').val()) || 0;
+            let _qty = parseFloat($(row).find('.qty').val()) || 0;
+            let _amount = _price * _qty;
+            $(row).find('.amount').val(_amount.toFixed(2));
+        }
+
+        $('body').on('click', '.delete', function () {
+            if ($('#tableId tbody tr').length > 1) {
+                let _row = $(this).closest('tr');
+                _row.remove();
+                calculateTotalAmount();
+            }
+        });
+    });
+</script>

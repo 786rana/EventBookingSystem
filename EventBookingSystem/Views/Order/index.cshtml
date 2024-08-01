@@ -5,13 +5,14 @@
 <table class="table table-responsive">
     <thead>
         <tr>
-            <td>Id</td>
-            <td>UserId</td>
-            <td>NetAmount</td>
-            <td>DateTime CreatedDate</td>
-            <td>Discount</td>
-            <td>Total</td>
-            <td>Actions:</td>
+            <th>Id</th>
+            <th>Created On</th>
+            <th>StartDate</th>
+            <th>EndDate</th>
+            <th>Total</th>
+            <th>Tip</th>
+            <th>Net Amount</th>
+            <th>Actions</th>
 
         </tr>
     </thead>
@@ -20,14 +21,15 @@
         {
             <tr>
                 <td>@Ebs.Id</td>
-                <td>@Ebs.UserId</td>
-                <td>@Ebs.NetAmount</td>
-                <td>@Ebs.CreatedDate</td>
-                <td>@Ebs.Discount</td>
+                <td>@Ebs.CreatedDate.ToString("dd/MMM/yyyy HH:mm")</td>
+                <td>@Ebs.StartDate.</td>
+                <td>@Ebs.EndDate.</td>
                 <td>@Ebs.Total</td>
+                <td>@Ebs.Tip</td>
+                <td>@Ebs.NetAmount</td>
                 <td>
-                    <a href="/MarriageHall/Edit?Id=@Ebs.Id"><input type="button" value="Edit" class="btn  btn-primary" /></a>
-                    <a href="/MarriageHall/Delete?Id=@Ebs.Id"><input type="button" value="Delete" class="btn btn-danger" /></a>
+                    <a href="/Order/Edit?Id=@Ebs.Id"><input type="button" value="Edit" class="btn  btn-primary" /></a>
+                    <a href="/Order/Delete?Id=@Ebs.Id"><input type="button" value="Delete" class="btn btn-danger" /></a>
                 </td>
             </tr>
         }
