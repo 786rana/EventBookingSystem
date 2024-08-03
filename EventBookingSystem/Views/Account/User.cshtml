@@ -86,7 +86,8 @@
 <div class="container">
     <h2>Sign Up</h2>
       <p style="text-align: center;";>Please fill in this form to create an account.</p>
-      <hr>        
+      <hr>
+        <p style="color:red">@ViewBag.Error</p>
     <form action="/Account/User" method="post">
         <div class="form-group">
             <label for="Name">Full Name:</label>

@@ -20,8 +20,16 @@ namespace EventBookingSystem.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            List<MarriageHall> x = _db.MarriageHalls.Where(x => x.UserId == user.Id).ToList();
-            return View(x);
+            if (user.Email == "admin@gmail.com")
+            {
+                List<MarriageHall> x = _db.MarriageHalls.ToList();
+                return View(x);
+            }
+            else
+            {
+                List<MarriageHall> x = _db.MarriageHalls.Where(x => x.UserId == user.Id).ToList();
+                return View(x);
+            }
         }
         public IActionResult Marriage()
         {

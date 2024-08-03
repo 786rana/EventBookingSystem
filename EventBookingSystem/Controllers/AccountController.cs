@@ -37,7 +37,7 @@ namespace EventBookingSystem.Controllers
             {
                 HttpContext.Session.SetObjectAsJson("login", user);
                 return RedirectToAction("Index", "Home");
-            }   
+            }
         }
         public IActionResult User()
         {
@@ -52,10 +52,35 @@ namespace EventBookingSystem.Controllers
         [HttpPost]
         public IActionResult User(User a)
         {
+            var alreadyExist = _db.Users.Where(x => x.Email == a.Email).FirstOrDefault();
+            if (alreadyExist==null)
+            {
+
+                _db.Users.Add(a);
+                _db.SaveChanges();
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                ViewBag.Error = "Email Already Exist";
+                return View(a);
+            }
             //var db = new EventDbContext();
-            _db.Users.Add(a);
-            _db.SaveChanges();
-            return RedirectToAction("Login");
         }
+        public IActionResult List(User a)
+        {
+            User x = HttpContext.Session.GetObjectFromJson<User>("login");
+            if (x == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            if (x.Email == "admin@gmail.com")
+            {
+                var users = _db.Users.ToList();
+                return View(users);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }

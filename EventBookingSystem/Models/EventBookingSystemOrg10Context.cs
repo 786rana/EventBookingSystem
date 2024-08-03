@@ -55,6 +55,9 @@ public partial class EventBookingSystemOrg10Context : DbContext
         modelBuilder.Entity<Order>(entity =>
         {
             entity.Property(e => e.BalanceAmount).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.BookingType)
+                .HasMaxLength(500)
+                .IsUnicode(false);
             entity.Property(e => e.CreatedDate).HasColumnType("datetime");
             entity.Property(e => e.EndDate).HasColumnType("datetime");
             entity.Property(e => e.NetAmount).HasColumnType("decimal(18, 2)");

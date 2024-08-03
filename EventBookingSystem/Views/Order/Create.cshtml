@@ -13,17 +13,20 @@
                         <input type="hidden" asp-for="Id" />
                         <div class="col-md-4 form-group">
                             <label for="Total">Marriage Hall</label>
-
                             <select asp-for="MarriageHallId" asp-items="ViewBag.MarriageHalls" class="form-control">
                                 <option value="0">Select</option>
                             </select>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="Total">Start Date</label>
+                            <label >Booking Type</label>
+                            <input asp-for="BookingType" class="form-control" required>
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label >Start Date</label>
                             <input asp-for="StartDate" class="form-control" required>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="Total">End Date</label>
+                            <label >End Date</label>
                             <input asp-for="EndDate" class="form-control" required>
                         </div>
                         <div class="col-md-4 form-group">
@@ -201,6 +204,7 @@
             let selectedOption = $(this).find('option:selected');
             let price = selectedOption.attr('data-price');
             $(_row).find('.price').val(price);
+            $(_row).find('.amount').val(price);
             calculateTotalAmount();
         });
 

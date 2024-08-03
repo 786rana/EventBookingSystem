@@ -38,21 +38,25 @@
     <header id="header" class="header d-flex align-items-center">
 
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center">
+            <a href="/Home" class="logo d-flex align-items-center">
                 <h1>EventBooking<span>.</span></h1>
             </a>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="#hero">Home</a></li>
+                    <li><a href="/Home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    @if (user != null && user.Vendor == true)
+                    @if (user != null && user.Email == "admin@gmail.com")
+                    {
+                        <li><a href="/Account/List">User</a></li>
+                    }
+                    @if (user != null && (user.Vendor == true || user.Email == "admin@gmail.com"))
                     {
                         <li><a href="/Services/Index">Services</a></li>
                         <li><a href="/MarriageHall/Index">Marraige Hall </a></li>
                     }
-                    else if (user != null && user.Vendor == false)
+                    @if (user != null && (user.Vendor == false || user.Email == "admin@gmail.com"))
                     {
                         <li><a href="/Order/Index">Order</a></li>
                     }

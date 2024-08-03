@@ -22,8 +22,16 @@ namespace EventBookingSystem.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            List<Order> orders = _db.Orders.Where(x => x.UserId == user.Id).ToList();
-            return View(orders);
+            if (user.Email == "admin@gmail.com")
+            {
+                List<Order> orders = _db.Orders.Include(x => x.User).ToList();
+                return View(orders);
+            }
+            else
+            {
+                List<Order> orders = _db.Orders.Include(x => x.User).Where(x => x.UserId == user.Id).ToList();
+                return View(orders);
+            }
         }
         public IActionResult Create()
         {
@@ -32,16 +40,46 @@ namespace EventBookingSystem.Controllers
             ViewBag.MarriageHalls = new SelectList(marriageHalls, "Id", "Name");
             return View();
         }
-        public IActionResult Edit(int Id)
+        public IActionResult Edit(int Id, string type = "")
         {
             var order = _db.Orders.Include(x => x.OrderDetails).Where(x => x.Id == Id).FirstOrDefault();
 
-            ViewBag.MarriageHalls = _db.MarriageHalls.ToList();
+            var marriageHalls = _db.MarriageHalls.ToList();
+            ViewBag.MarriageHalls = new SelectList(marriageHalls, "Id", "Name");
             ViewBag.services = _db.Servicesses.ToList();
-
+            ViewBag.Type = type;
             return View("Create", order);
         }
+        public IActionResult Details(int Id)
+        {
+            var order = _db.Orders.Include(x => x.OrderDetails).Where(x => x.Id == Id).FirstOrDefault();
 
+            var marriageHalls = _db.MarriageHalls.ToList();
+            ViewBag.MarriageHalls = new SelectList(marriageHalls, "Id", "Name");
+            ViewBag.services = _db.Servicesses.ToList();
+            return View(order);
+        }
+        public IActionResult Payment(int Id)
+        {
+            var order = _db.Orders.Include(x => x.OrderDetails).Where(x => x.Id == Id).FirstOrDefault();
+
+            var marriageHalls = _db.MarriageHalls.ToList();
+            ViewBag.MarriageHalls = new SelectList(marriageHalls, "Id", "Name"); 
+            ViewBag.services = _db.Servicesses.ToList();
+            return View(order);
+        }
+        [HttpPost]
+        public IActionResult Payment(Order order)
+        {
+            var oldOrder = _db.Orders.Include(x => x.OrderDetails).Where(x => x.Id == order.Id).FirstOrDefault();
+            oldOrder.PaidAmount = order.PaidAmount;
+            oldOrder.BalanceAmount= order.BalanceAmount;
+
+            _db.Orders.Update(oldOrder);
+            _db.SaveChanges();
+            return RedirectToAction("Index","Order");
+        
+        }
         public IActionResult Order(Order model)
         {
             User x = HttpContext.Session.GetObjectFromJson<User>("login");

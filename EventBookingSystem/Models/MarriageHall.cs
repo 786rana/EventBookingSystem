@@ -13,7 +13,6 @@ public partial class MarriageHall
 
     public string Location { get; set; } = null!;
 
-
     public string Details { get; set; } = null!;
 
     public int UserId { get; set; }

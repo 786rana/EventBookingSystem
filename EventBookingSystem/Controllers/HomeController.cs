@@ -7,15 +7,17 @@ namespace EventBookingSystem.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly EventBookingSystemOrg10Context _db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(EventBookingSystemOrg10Context db)
         {
-            _logger = logger;
+            _db = db;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var marriageHalls = _db.MarriageHalls.ToList();
+            return View(marriageHalls);
         }
 
         public IActionResult Privacy()
