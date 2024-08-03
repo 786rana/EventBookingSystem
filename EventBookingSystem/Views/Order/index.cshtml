@@ -8,84 +8,94 @@
         user = JsonConvert.DeserializeObject<User>(x);
     }
 }
-<h2>
-    <a href="/Order/Create"><input type="button" value="Add Order" class="btn btn-primary" /></a>
-</h2>
-<table class="table table-responsive">
-    <thead>
-        <tr>
-            <th>Customer</th>
-            <th>Created On</th>
-            <th>Booking Type</th>
-            <th>StartDate</th>
-            <th>EndDate</th>
-            <th>Total</th>
-            <th>Tip</th>
-            <th>Net</th>
-            <th>Status</th>
-            <th>Paid</th>
-            <th>Balance</th>
-            <th>Actions</th>
 
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var Ebs in Model)
-        {
-            <tr>
-                <td>@Ebs.User.Name</td>
-                <td>@Ebs.CreatedDate.ToString("dd/MMM/yyyy HH:mm")</td>
-                <td>@Ebs.BookingType</td>
-                <td>
-                    @if (@Ebs.StartDate != null)
-                    {
-                        @Ebs.StartDate.Value.ToString("dd/MMM/yyyy HH:mm")
-                    }
-                </td>
-                <td>
-                    @if (@Ebs.EndDate != null)
-                    {
-                        @(Convert.ToDateTime(Ebs.EndDate).ToString("dd/MMM/yyyy HH:mm"))
-                    }
-                </td>
-                <td>@Ebs.Total</td>
-                <td>@Ebs.Tip</td>
-                <td>@Ebs.NetAmount</td>
-                <td>
-                    @if (Ebs.BalanceAmount == Ebs.PaidAmount)
-                    {
-                        <span class="badge text-bg-danger">UnPaid</span>
-                    }
-                    else if (Ebs.PaidAmount == Ebs.NetAmount)
-                    {
-                        <span class="badge text-bg-success">Paid</span>
-                    }
-                    else if (Ebs.BalanceAmount > 0 && Ebs.PaidAmount > 0)
-                    {
-                        <span class="badge text-bg-info">Partial Paid</span>
-                    }
-                </td>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-info d-flex justify-content-between align-items-center">
+            <h2>Order</h2>
+            <a href="/Order/Create">
+                <input type="button" value="New Order" class="btn btn-light" />
+            </a>
+        </div>
+        <div class="card-body">
+            <table class="table table-responsive table-border">
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Created On</th>
+                        <th>Booking Type</th>
+                        <th>StartDate</th>
+                        <th>EndDate</th>
+                        <th>Total</th>
+                        <th>Tip</th>
+                        <th>Net</th>
+                        <th>Status</th>
+                        <th>Paid</th>
+                        <th>Balance</th>
+                        <th>Actions</th>
 
-                <td>@Ebs.PaidAmount</td>
-                <td>@Ebs.BalanceAmount</td>
-                <td>
-                    @if (Ebs.BalanceAmount > 0 && Ebs.PaidAmount > 0 && user.Email == "admin@gmail.com")
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var Ebs in Model)
                     {
-                        <a href="/Order/Payment?Id=@Ebs.Id"><input type="button" value="Pay" class="btn  btn-success" /></a>
-                    }
-                    else if (Ebs.PaidAmount == 0 || Ebs.PaidAmount == null)
-                    {
-                        if (user.Email == "admin@gmail.com")
-                        {
-                            <a href="/Order/Payment?Id=@Ebs.Id"><input type="button" value="Pay" class="btn  btn-success" /></a>
-                        }
-                        <a href="/Order/Edit?Id=@Ebs.Id"><input type="button" value="Edit" class="btn  btn-primary" /></a>
-                        <a href="/Order/Delete?Id=@Ebs.Id"><input type="button" value="Delete" class="btn btn-danger" /></a>
-                    }
-                    <a href="/Order/Details?Id=@Ebs.Id"><input type="button" value="View" class="btn btn-info" /></a>
+                        <tr>
+                            <td>@Ebs.User.Name</td>
+                            <td>@Ebs.CreatedDate.ToString("dd/MMM/yyyy HH:mm")</td>
+                            <td>@Ebs.BookingType</td>
+                            <td>
+                                @if (@Ebs.StartDate != null)
+                                {
+                                    @Ebs.StartDate.Value.ToString("dd/MMM/yyyy HH:mm")
+                                }
+                            </td>
+                            <td>
+                                @if (@Ebs.EndDate != null)
+                                {
+                                    @(Convert.ToDateTime(Ebs.EndDate).ToString("dd/MMM/yyyy HH:mm"))
+                                }
+                            </td>
+                            <td>@Ebs.Total</td>
+                            <td>@Ebs.Tip</td>
+                            <td>@Ebs.NetAmount</td>
+                            <td>
+                                @if (Ebs.BalanceAmount == Ebs.PaidAmount)
+                                {
+                                    <span class="badge text-bg-danger">UnPaid</span>
+                                }
+                                else if (Ebs.PaidAmount == Ebs.NetAmount)
+                                {
+                                    <span class="badge text-bg-success">Paid</span>
+                                }
+                                else if (Ebs.BalanceAmount > 0 && Ebs.PaidAmount > 0)
+                                {
+                                    <span class="badge text-bg-info">Partial Paid</span>
+                                }
+                            </td>
 
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                            <td>@Ebs.PaidAmount</td>
+                            <td>@Ebs.BalanceAmount</td>
+                            <td>
+                                @if (Ebs.BalanceAmount > 0 && Ebs.PaidAmount > 0 && user.Email == "admin@gmail.com")
+                                {
+                                    <a href="/Order/Payment?Id=@Ebs.Id"><input type="button" value="Pay" class="btn  btn-success" /></a>
+                                }
+                                else if (Ebs.PaidAmount == 0 || Ebs.PaidAmount == null)
+                                {
+                                    if (user.Email == "admin@gmail.com")
+                                    {
+                                        <a href="/Order/Payment?Id=@Ebs.Id"><input type="button" value="Pay" class="btn  btn-success" /></a>
+                                    }
+                                    <a href="/Order/Edit?Id=@Ebs.Id"><input type="button" value="Edit" class="btn  btn-primary" /></a>
+                                    <a href="/Order/Delete?Id=@Ebs.Id"><input type="button" value="Delete" class="btn btn-danger" /></a>
+                                }
+                                <a href="/Order/Details?Id=@Ebs.Id"><input type="button" value="View" class="btn btn-info" /></a>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

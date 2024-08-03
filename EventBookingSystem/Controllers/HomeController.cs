@@ -17,6 +17,7 @@ namespace EventBookingSystem.Controllers
         public IActionResult Index()
         {
             var marriageHalls = _db.MarriageHalls.ToList();
+            ViewBag.services=_db.Servicesses.ToList();
             return View(marriageHalls);
         }
 

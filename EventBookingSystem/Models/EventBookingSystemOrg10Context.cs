@@ -37,6 +37,10 @@ public partial class EventBookingSystemOrg10Context : DbContext
         {
             entity.HasIndex(e => e.UserId, "IX_MarriageHalls_UserId");
 
+            entity.Property(e => e.ImageUrl)
+                .HasMaxLength(500)
+                .IsUnicode(false);
+
             entity.HasOne(d => d.User).WithMany(p => p.MarriageHalls).HasForeignKey(d => d.UserId);
         });
 
@@ -90,6 +94,11 @@ public partial class EventBookingSystemOrg10Context : DbContext
         modelBuilder.Entity<Servicess>(entity =>
         {
             entity.ToTable("Servicess");
+
+            entity.Property(e => e.Detail).IsUnicode(false);
+            entity.Property(e => e.ImageUrl)
+                .HasMaxLength(500)
+                .IsUnicode(false);
         });
 
         OnModelCreatingPartial(modelBuilder);

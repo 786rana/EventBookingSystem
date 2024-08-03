@@ -3,140 +3,152 @@
 @{
     List<Servicess> ser = (List<Servicess>)ViewBag.services;
 }
-<section id="_contact" class="contact">
-    <div class="container" data-aos="fade-up">
-        <div class="row gx-lg-0 gy-4">
-            <div class="col-lg-12">
-                <h2 class="text-center">New Order</h2><br />
-                <form action="/Order/Order" id="mForm" method="post" role="form" class="php-email-form">
-                    <div class="row">
-                        <input type="hidden" asp-for="Id" />
-                        <div class="col-md-4 form-group">
-                            <label for="Total">Marriage Hall</label>
-                            <select asp-for="MarriageHallId" asp-items="ViewBag.MarriageHalls" class="form-control">
-                                <option value="0">Select</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label >Booking Type</label>
-                            <input asp-for="BookingType" class="form-control" required>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label >Start Date</label>
-                            <input asp-for="StartDate" class="form-control" required>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label >End Date</label>
-                            <input asp-for="EndDate" class="form-control" required>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="Total">Total</label>
-                            <input asp-for="Total" class="form-control" required readonly>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="Tip">Tip</label>
-                            <input asp-for="Tip" class="form-control" required>
-                        </div>
 
 
-                        <div class="col-md-4 form-group">
-                            <label for="NetAmount">Net Amount</label>
-                            <input asp-for="NetAmount" class="form-control" required readonly>
-                        </div>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-info d-flex justify-content-between align-items-center">
+            <h2>Order</h2>
+        </div>
+        <div class="card-body">
+            <section id="_contact" class="contact">
+                <div class="container" data-aos="fade-up">
+                    <div class="row gx-lg-0 gy-4">
+                        <div class="col-lg-12">
+                            <h2 class="text-center">New Order</h2><br />
+                            <form action="/Order/Order" id="mForm" method="post" role="form" class="php-email-form">
+                                <div class="row">
+                                    <input type="hidden" asp-for="Id" />
+                                    <div class="col-md-4 form-group">
+                                        <label for="Total">Marriage Hall</label>
+                                        <select asp-for="MarriageHallId" asp-items="ViewBag.MarriageHalls" class="form-control">
+                                            <option value="0">Select</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label>Booking Type</label>
+                                        <input asp-for="BookingType" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label>Start Date</label>
+                                        <input asp-for="StartDate" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label>End Date</label>
+                                        <input asp-for="EndDate" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label for="Total">Total</label>
+                                        <input asp-for="Total" class="form-control" required readonly>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label for="Tip">Tip</label>
+                                        <input asp-for="Tip" class="form-control" required>
+                                    </div>
 
-                    </div>
-                    <div class="col-md-12 pull-right">
-                        <input type="button" id="tbId" value="Add" class="btn btn-primary" />
-                    </div>
-                    <div class="col-md-12">
-                        <table id="tableId" class="table table-bordered table-sm">
-                            <thead>
-                                <tr>
-                                    <th>Service</th>
-                                    <th>Price</th>
-                                    <th>Qty</th>
-                                    <th>Total</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @* Edit Case *@
-                                @if (Model != null && Model.Id > 0 && Model.OrderDetails != null && Model.OrderDetails.Count > 0)
-                                {
-                                    foreach (var Ebs in Model.OrderDetails)
-                                    {
-                                        <tr>
-                                            <td>
-                                                <input type="hidden" class="orderDetailId" value="@Ebs.Id" />
 
-                                                <select class="form-control serviceId">
-                                                    <option>Select</option>
-                                                    @if (ser != null)
-                                                    {
-                                                        foreach (var item in ser)
-                                                        {
-                                                            if (Ebs.ServiceId == item.Id)
-                                                            {
-                                                                <option selected data-price= value="@item.Id">@item.Name</option>
-                                                            }
-                                                            else
-                                                            {
-                                                                <option value="@item.Id">@item.Name</option>
-                                                            }
-                                                        }
+                                    <div class="col-md-4 form-group">
+                                        <label for="NetAmount">Net Amount</label>
+                                        <input asp-for="NetAmount" class="form-control" required readonly>
+                                    </div>
 
-                                                    }
-
-                                                </select>
-                                            </td>
-
-                                            <td><input type="text" value="@Ebs.Price" class="form-control price" /></td>
-                                            <td><input type="text" value="@Ebs.Quantity" class="form-control qty" /></td>
-                                            <td><input type="text" value="@Ebs.Amount" class="form-control amount" readonly /></td>
-                                            <td>
-                                                <button type="button" class="btn btn-danger delete">Delete</button>
-                                            </td>
-                                        </tr>
-
-                                    }
-                                }
-                                else @* Create Record *@
-                                {
-                                    <tr>
-                                        <td>
-                                            <input type="hidden" class="orderDetailId" value="0" />
-                                            <select class="form-control serviceId">
-                                                <option value="0">Select</option>
-                                                @if (ser != null)
+                                </div>
+                                <div class="col-md-12 pull-right">
+                                    <input type="button" id="tbId" value="Add" class="btn btn-primary" />
+                                </div>
+                                <div class="col-md-12">
+                                    <table id="tableId" class="table table-bordered table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Service</th>
+                                                <th>Price</th>
+                                                <th>Qty</th>
+                                                <th>Total</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @* Edit Case *@
+                                            @if (Model != null && Model.Id > 0 && Model.OrderDetails != null && Model.OrderDetails.Count > 0)
+                                            {
+                                                foreach (var Ebs in Model.OrderDetails)
                                                 {
-                                                    foreach (var item in ser)
-                                                    {
-                                                        <option value="@item.Id">@item.Name</option>
-                                                    }
-                                                }
-                                            </select>
-                                        </td>
-                                        <td><input type="text" class="form-control price" /></td>
-                                        <td><input type="text" value="1" class="form-control qty" /></td>
-                                        <td><input type="text" class="form-control amount" readonly /></td>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="hidden" class="orderDetailId" value="@Ebs.Id" />
 
-                                        <td>
-                                            <button type="button" class="btn btn-danger delete">Delete</button>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
+                                                            <select class="form-control serviceId">
+                                                                <option>Select</option>
+                                                                @if (ser != null)
+                                                                {
+                                                                    foreach (var item in ser)
+                                                                    {
+                                                                        if (Ebs.ServiceId == item.Id)
+                                                                        {
+                                                                            <option selected data-price= value="@item.Id">@item.Name</option>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <option value="@item.Id">@item.Name</option>
+                                                                        }
+                                                                    }
+
+                                                                }
+
+                                                            </select>
+                                                        </td>
+
+                                                        <td><input type="text" value="@Ebs.Price" class="form-control price" /></td>
+                                                        <td><input type="text" value="@Ebs.Quantity" class="form-control qty" /></td>
+                                                        <td><input type="text" value="@Ebs.Amount" class="form-control amount" readonly /></td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-danger delete">Delete</button>
+                                                        </td>
+                                                    </tr>
+
+                                                }
+                                            }
+                                            else @* Create Record *@
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <input type="hidden" class="orderDetailId" value="0" />
+                                                        <select class="form-control serviceId">
+                                                            <option value="0">Select</option>
+                                                            @if (ser != null)
+                                                            {
+                                                                foreach (var item in ser)
+                                                                {
+                                                                    <option value="@item.Id">@item.Name</option>
+                                                                }
+                                                            }
+                                                        </select>
+                                                    </td>
+                                                    <td><input type="text" class="form-control price" /></td>
+                                                    <td><input type="text" value="1" class="form-control qty" /></td>
+                                                    <td><input type="text" class="form-control amount" readonly /></td>
+
+                                                    <td>
+                                                        <button type="button" class="btn btn-danger delete">Delete</button>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="text-left"><button type="submit">Save</button></div>
+                            </form>
+                        </div><!-- End Contact Form -->
+
                     </div>
 
-                    <div class="text-left"><button type="submit">Save</button></div>
-                </form>
-            </div><!-- End Contact Form -->
+                </div>
+            </section><!-- End Contact Section -->
 
         </div>
-
     </div>
-</section><!-- End Contact Section -->
+</div>
 
 <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>

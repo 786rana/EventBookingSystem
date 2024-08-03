@@ -17,6 +17,8 @@ public partial class MarriageHall
 
     public int UserId { get; set; }
 
+    public string? ImageUrl { get; set; }
+
     public virtual ICollection<MarriageHallService> MarriageHallServices { get; set; } = new List<MarriageHallService>();
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();

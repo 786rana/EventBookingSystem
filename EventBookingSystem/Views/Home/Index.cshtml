@@ -1,539 +1,349 @@
-﻿@model List<EventBookingSystem.Models.MarriageHall>
+﻿@using EventBookingSystem.Models;
+@model List<MarriageHall>
 
 @{
     ViewData["Title"] = "Home Page";
+    List<Servicess> services = (List<Servicess>)ViewBag.services;
+    int serviceCounter = 1;
 }
-<!-- ======= Hero Section ======= -->
-<section id="hero" class="hero">
-    <div class="container position-relative">
-        <div class="row gy-5" data-aos="fade-in">
-            <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
-                <h2>Welcome to Event Booking system</span></h2>
-                <p>Streamline your event planning with our user-friendly Event Booking System. From venue selection to guest management, we've got you covered for seamless and stress-free event coordination</p>
-                <div class="d-flex justify-content-center justify-content-lg-start">
-                    <a href="#services" class="btn-get-started">Get Started</a>
+
+
+
+<!-- Carousel Start -->
+<div class="container-fluid p-0 mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">
+                <img class="img-fluid" src="~/new-theme/img/carousel-1.jpg" alt="Image">
+            </button>
+            <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="1" aria-label="Slide 2">
+                <img class="img-fluid" src="~/new-theme/img/carousel-2.jpg" alt="Image">
+            </button>
+            <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="2" aria-label="Slide 3">
+                <img class="img-fluid" src="~/new-theme/img/carousel-3.jpg" alt="Image">
+            </button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="w-100" src="~/new-theme/img/carousel-1.jpg" alt="Image">
+                <div class="carousel-caption">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h4 class="text-white text-uppercase mb-4 animated zoomIn">We Are Leader In</h4>
+                        <h1 class="display-1 text-white mb-0 animated zoomIn">Creative & Innovative Digital Solution</h1>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-6 order-1 order-lg-2">
-                <img src="~/theme/assets/img/hero-img.svg" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="100">
+            <div class="carousel-item">
+                <img class="w-100" src="~/new-theme/img/carousel-2.jpg" alt="Image">
+                <div class="carousel-caption">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h4 class="text-white text-uppercase mb-4 animated zoomIn">We Are Leader In</h4>
+                        <h1 class="display-1 text-white mb-0 animated zoomIn">Creative & Innovative Digital Solution</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="w-100" src="~/new-theme/img/carousel-3.jpg" alt="Image">
+                <div class="carousel-caption">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h4 class="text-white text-uppercase mb-4 animated zoomIn">We Are Leader In</h4>
+                        <h1 class="display-1 text-white mb-0 animated zoomIn">Creative & Innovative Digital Solution</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<!-- Carousel End -->
+<!-- Facts Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="fact-item bg-light rounded text-center h-100 p-5">
+                    <i class="fa fa-certificate fa-4x text-primary mb-4"></i>
+                    <h5 class="mb-3">Years Experience</h5>
+                    <h1 class="display-5 mb-0" data-toggle="counter-up">1234</h1>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="fact-item bg-light rounded text-center h-100 p-5">
+                    <i class="fa fa-users-cog fa-4x text-primary mb-4"></i>
+                    <h5 class="mb-3">Team Members</h5>
+                    <h1 class="display-5 mb-0" data-toggle="counter-up">1234</h1>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="fact-item bg-light rounded text-center h-100 p-5">
+                    <i class="fa fa-users fa-4x text-primary mb-4"></i>
+                    <h5 class="mb-3">Satisfied Clients</h5>
+                    <h1 class="display-5 mb-0" data-toggle="counter-up">1234</h1>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="fact-item bg-light rounded text-center h-100 p-5">
+                    <i class="fa fa-check fa-4x text-primary mb-4"></i>
+                    <h5 class="mb-3">Projects Done</h5>
+                    <h1 class="display-5 mb-0" data-toggle="counter-up">1234</h1>
+                </div>
             </div>
         </div>
     </div>
-    <div>
-        <div>
-        </div>
-        <div class="icon-boxes position-relative">
-            <div class="container position-relative">
-                <div class="row gy-4 mt-5">
-
-                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-easel"></i></div>
-                            <h4 class="title"><a href="#" class="stretched-link">Book</a></h4>
+</div>
+<!-- Facts End -->
+<!-- About Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="img-border">
+                    <img class="img-fluid" src="~/new-theme/img/about.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="h-100">
+                    <h6 class="section-title bg-white text-start text-primary pe-3">About Us</h6>
+                    <h1 class="display-6 mb-4">#1 Digital Solution With <span class="text-primary">10 Years</span> Of Experience</h1>
+                    <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                    <p class="mb-4">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est diam rebum amet diam ipsum. Clita clita labore, dolor duo nonumy clita sit at, sed sit sanctus dolor eos.</p>
+                    <div class="d-flex align-items-center mb-4 pb-2">
+                        <img class="flex-shrink-0 rounded-circle" src="~/new-theme/team-1.jpg" alt="" style="width: 50px; height: 50px;">
+                        <div class="ps-4">
+                            <h6>Jhon Doe</h6>
+                            <small>SEO & Founder</small>
                         </div>
-                    </div><!--End Icon Box -->
-
-                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-gem"></i></div>
-                            <h4 class="title"><a href="#" class="stretched-link">Beauty Palors</a></h4>
-                        </div>
-                    </div><!--End Icon Box -->
-
-                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-geo-alt"></i></div>
-                            <h4 class="title"><a href="#" class="stretched-link">DJ Booking</a></h4>
-                        </div>
-                    </div><!--End Icon Box -->
-
-                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-command"></i></div>
-                            <h4 class="title"><a href="#" class="stretched-link">Venue Booking</a></h4>
-                        </div>
-                    </div><!--End Icon Box -->
-
+                    </div>
+                    <a class="btn btn-primary rounded-pill py-3 px-5" href="#">Read More</a>
                 </div>
             </div>
         </div>
-
     </div>
-</section>
-<!-- End Hero Section -->
-
-<main id="main">
-
-    <!-- ======= Our Services Section ======= -->
-    <section id="" class="services  sections-bg">
-        <div class="container" data-aos="fade-up">
-            <div class="section-header">
-                <h2>Our Marriage Hall</h2>
-            </div>
-            <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
-                @foreach (var item in Model)
-                {
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-item  position-relative">
-                            @* <div class="icon">
-                                <i class="bi bi-activity"></i>
-                            </div> *@
-                            <h3>@item.Name</h3>
-                            <h5><b>Phone: </b>@item.Phone</h5>
-                            <p><b>Address: </b>@item.Location </p>
-                            <p>@item.Details</p>
-                        </div>
-                    </div>
-                }
-            </div>
-
+</div>
+<!-- About End -->
+<!-- Service Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h6 class="section-title bg-white text-center text-primary px-3">Services</h6>
+            <h1 class="display-6 mb-4">We Focuse On Making The Best In All Sectors</h1>
         </div>
-    </section>
-
-    
-    <!-- ======= About Us Section ======= -->
-    <section id="about" class="about">
-        <div class="container" data-aos="fade-up">
-
-            <div class="section-header">
-                <h2>About Us</h2>
-                <p>At Event Booking System, we are dedicated to revolutionizing your event planning experience. With a passion for efficiency and customer satisfaction, our platform offers intuitive tools for seamless venue booking, attendee management, and event success. Trust us to elevate your events to new heights</p>
-            </div>
-
-            <div class="row gy-4">
-                <div class="col-lg-6">
-                    <h3>Event Booking system that amazing slection </h3>
-                    <img src="~/theme/assets/img/wedding.jpg" class="img-fluid rounded-4 mb-4" alt="">
-                    <p>Simplified menu selection:Choose from pre-configured menus or customize items to match your event theme and dietary needs.</p>
-                    <p>Simplified menu selection:Choose from pre-configured menus or customize items to match your event theme and dietary needs.</p>
-                </div>
-                <div class="col-lg-6">
-                    <div class="content ps-0 ps-lg-5">
-                        <p class="fst-italic">
-                            Simplified Event Theme selection:Choose from pre-configured theme or customize items to match your event theme and dietary needs.
-                        </p>
-                        <ul>
-                            <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-                        </ul>
-                        <p>
-                            Simplified them selection:Choose from pre-configured theme or customize items to match your event theme and dietary needs.
-                        </p>
-
-                        <div class="position-relative mt-4">
-                            <img src="~/theme/assets/img/wedding 2.jpg" class="img-fluid rounded-4" alt="">
-                            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section><!-- End About Us Section -->
-    <!-- ======= Our Services Section ======= -->
-    <section id="services" class="services  sections-bg">
-        <div class="container" data-aos="fade-up">
-
-            <div class="section-header">
-                <h2>Our Services</h2>
-                <p>Simplify your event planning our efficient booking services. From venue selection to vendor coordination, Trust us to make your event a seamless success.</p>
-            </div>
-
-            <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item  position-relative">
-                        <div class="icon">
-                            <i class="bi bi-activity"></i>
-                        </div>
-                        <h3>Venue Booking</h3>
-                        <p>
-                            Discovering the ideal venue for your event has never been simpler with our efficient booking platform.
-                        </p>
-                        <a href="/venue.html" class="readmore stretched-link">Read more <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div><!-- End Service Item -->
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item position-relative">
-                        <div class="icon">
-                            <i class="bi bi-broadcast"></i>
-                        </div>
-                        <h3>Camera Man Booking</h3>
-                        <p>Securing a skilled cameraman for your project is effortless with our dedicated booking service. </p>
-                        <a href="" class="readmore stretched-link">Read more <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div><!-- End Service Item -->
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item position-relative">
-                        <div class="icon">
-                            <i class="bi bi-easel"></i>
-                        </div>
-                        <h3>DJ Booking</h3>
-                        <p>Finding the perfect DJ for your event is a breeze with our seamless booking service. </p>
-                        <a href="/dj.html" class="readmore stretched-link">Read more <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div><!-- End Service Item -->
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item position-relative">
-                        <div class="icon">
-                            <i class="bi bi-bounding-box-circles"></i>
-                        </div>
-                        <h3>Beauty Polors</h3>
-                        <p>Transform your look and elevate your beauty routine with Beauty Polors, your ultimate destination for premium cosmetics. </p>
-                        <a href="/parlor.html" class="readmore stretched-link">Read more <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div><!-- End Service Item -->
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-item position-relative">
-                        <div class="icon">
-                            <i class="bi bi-calendar4-week"></i>
-                        </div>
-                        <h3>Catering</h3>
-                        <p>Experience culinary excellence with our bespoke catering services, tailored to elevate any occasion.</p>
-                        <a href="" class="readmore stretched-link">Read more <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div><!-- End Service Item -->
-
-
-
-            </div>
-
-        </div>
-    </section><!-- End Our Services Section -->
-    <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials">
-        <div class="container" data-aos="fade-up">
-
-            <div class="section-header">
-                <h2>Testimonials</h2>
-                <p>Efficient, user-friendly, and game-changing, our event booking system streamlines the process, exceeds expectations, and saves valuable time for organizers, ensuring unforgettable event experiences.</p>
-            </div>
-
-            <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
-                <div class="swiper-wrapper">
-
-                    <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                            <div class="testimonial-item">
-                                <div class="d-flex align-items-center">
-                                    <img src="~/theme/assets/img/testimonials/my pic.jpg" class="testimonial-img flex-shrink-0" alt="">
-                                   
-                                    <div>
-                                        <h3>Rafaqat Naseer</h3>
-                                        <h4>Web Developer and Designer</h4>
-                                        <div class="stars">
-                                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    Using this event booking system was a game-changer! It made finding and securing the perfect venue for our event incredibly easy. It saved me so much time and stress!.
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div>
-                    </div><!-- End testimonial item -->
-
-                    <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                            <div class="testimonial-item">
-                                <div class="d-flex align-items-center">
-                                    <img src="~/theme/assets/img/testimonials/WhatsApp Image 2024-03-28 at 9.51.48 PM.jpeg" class="testimonial-img flex-shrink-0" alt="">
-                                    <div>
-                                        <h3>Ehtisham </h3>
-                                        <h4>Designer and Testing</h4>
-                                        <div class="stars">
-                                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    Their event booking system streamlined the entire process, from initial inquiry to final confirmation. Highly recommend!"
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div>
-                    </div><!-- End testimonial item -->
-
-                    <div class="swiper-slide">
-                        <div class="testimonial-wrap">
-                            <div class="testimonial-item">
-                                <div class="d-flex align-items-center">
-                                    <img src="~/theme/assets/img/testimonials/testimonials-4.jpg" class="testimonial-img flex-shrink-0" alt="">
-                                    <div>
-                                        <h3>Saif Ali</h3>
-                                        <h4>Freelancer</h4>
-                                        <div class="stars">
-                                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-not-fill"></i><i class="bi bi-star-not-fill"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    I couldn't be happier with the level of service provided by this event booking system.
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div>
-                    </div><!-- End testimonial item -->
-
-
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
-
-        </div>
-    </section><!-- End Testimonials Section -->
-    <!-- ======= Pricing Section ======= -->
-    <section id="pricing" class="pricing sections-bg">
-        <div class="container" data-aos="fade-up">
-
-            <div class="section-header">
-                <h2>Pricing</h2>
-                <p>Our pricing structure is transparent, competitive, and tailored to meet your budgetary needs, ensuring affordability without compromising on quality. With flexible options and no hidden fees, you can confidently plan your event knowing you're getting excellent value for your investment. </p>
-            </div>
-
-            <div class="row g-4 py-lg-5" data-aos="zoom-out" data-aos-delay="100">
-
-                <div class="col-lg-4">
-                    <div class="pricing-item">
-                        <h3>Free Plan</h3>
-                        <div class="icon">
-                            <i class="bi bi-box"></i>
-                        </div>
-                        <h4><sup>$</sup>0<span> / month</span></h4>
-                        <ul>
-                            <li><i class="bi bi-check"></i>Event booking system handle venue availability and scheduling</li>
-                            <li><i class="bi bi-check"></i> Payment methods are accepted through the event booking system</li>
-                            <li><i class="bi bi-check"></i> Event booking system Easily managem </li>
-
-                        </ul>
-                        <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
-                    </div>
-                </div><!-- End Pricing Item -->
-
-                <div class="col-lg-4">
-                    <div class="pricing-item featured">
-                        <h3>Business Plan</h3>
-                        <div class="icon">
-                            <i class="bi bi-airplane"></i>
-                        </div>
-
-                        <h4><sup>$</sup>29<span> / month</span></h4>
-                        <ul>
-                            <li><i class="bi bi-check"></i> The target market for the event booking system</li>
-                            <li><i class="bi bi-check"></i> Event booking system generate revenue, and the pricing strategies involved</li>
-                            <li><i class="bi bi-check"></i> What features differentiate the event booking system from competitors in the market</li>
-
-                        </ul>
-                        <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
-                    </div>
-                </div><!-- End Pricing Item -->
-
-                <div class="col-lg-4">
-                    <div class="pricing-item">
-                        <h3>Developer Plan</h3>
-                        <div class="icon">
-                            <i class="bi bi-send"></i>
-                        </div>
-                        <h4><sup>$</sup>49<span> / month</span></h4>
-                        <ul>
-                            <li><i class="bi bi-check"></i> What programming languages and frameworks are utilized in developing </li>
-                            <li><i class="bi bi-check"></i> Implemented to protect user data and payment information within the system</li>
-                            <li><i class="bi bi-check"></i> Integrating third-party APIs or services to enhance functionality within the event booking system</li>
-
-                        </ul>
-                        <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
-                    </div>
-                </div><!-- End Pricing Item -->
-
-            </div>
-
-        </div>
-    </section><!-- End Pricing Section -->
-    <!-- ======= Frequently Asked Questions Section ======= -->
-    <section id="faq" class="faq">
-        <div class="container" data-aos="fade-up">
-
-            <div class="row gy-4">
-
-                <div class="col-lg-4">
-                    <div class="content px-xl-5">
-                        <h3>Frequently Asked <strong>Questions</strong></h3>
-                        <p style="color: bisque;">
-                            Digital platform that simplifies the process of finding, reserving, and managing venues or services for events, offering efficiency and convenience to event organizers.
-                        </p>
-                    </div>
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <a class="service-item d-block rounded text-center h-100 p-4" href="/MarriageHall/Detail/@item.Id">
+                        <img class="img-fluid rounded mb-4" src="~/new-theme/img/service-1.jpg" alt="">
+                        <h4 class="mb-0">@item.Name</h4>
+                    </a>
                 </div>
 
-                <div class="col-lg-8">
 
-                    <div class="accordion accordion-flush" id="faqlist" data-aos="fade-up" data-aos-delay="100">
-
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
-                                    <span class="num">1.</span>
-                                    How does your event booking system streamline the process of finding and securing venues?
-                                </button>
-                            </h3>
-                            <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
-                                <div class="accordion-body">
-                                    Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+            }
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+<!-- Feature Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="h-100">
+                    <h6 class="section-title bg-white text-start text-primary pe-3">Why Choose Us</h6>
+                    <h1 class="display-6 mb-4">Why People Trust Us? Learn About Us!</h1>
+                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <div class="skill">
+                                <div class="d-flex justify-content-between">
+                                    <p class="mb-2">Digital Marketing</p>
+                                    <p class="mb-2">85%</p>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
-                        </div><!-- # Faq item-->
-
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
-                                    <span class="num">2.</span>
-                                    Can your event booking system accommodate various types of events, such as weddings, corporate meetings, and concerts?
-                                </button>
-                            </h3>
-                            <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
-                                <div class="accordion-body">
-                                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                        </div>
+                        <div class="col-12">
+                            <div class="skill">
+                                <div class="d-flex justify-content-between">
+                                    <p class="mb-2">SEO & Backlinks</p>
+                                    <p class="mb-2">90%</p>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
-                        </div><!-- # Faq item-->
-
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
-                                    <span class="num">3.</span>
-                                    What features does your event booking system offer to facilitate communication between event organizers and venues/vendors?
-                                </button>
-                            </h3>
-                            <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
-                                <div class="accordion-body">
-                                    Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                        </div>
+                        <div class="col-12">
+                            <div class="skill">
+                                <div class="d-flex justify-content-between">
+                                    <p class="mb-2">Design & Development</p>
+                                    <p class="mb-2">95%</p>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
-                        </div><!-- # Faq item-->
-
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-4">
-                                    <span class="num">4.</span>
-                                    How does your event booking system handle payment processing and pricing transparency?
-                                </button>
-                            </h3>
-                            <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist">
-                                <div class="accordion-body">
-                                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
-                                </div>
-                            </div>
-                        </div><!-- # Faq item-->
-
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-5">
-                                    <span class="num">5.</span>
-                                    Can your event booking system provide analytics or reporting features to track event bookings and performance metrics?
-                                </button>
-                            </h3>
-                            <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
-                                <div class="accordion-body">
-                                    Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
-                                </div>
-                            </div>
-                        </div><!-- # Faq item-->
-
+                        </div>
                     </div>
-
                 </div>
             </div>
-
-        </div>
-    </section><!-- End Frequently Asked Questions Section -->
-    <hr>
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-        <div class="container" data-aos="fade-up">
-
-            <div class="section-header">
-                <h2>Contact</h2>
-                <p>Our team is available to assist you with any inquiries, support requests, or customization needs you may have. We look forward to hearing from you and helping make your event planning process as smooth as possible.</p>
-            </div>
-
-            <div class="row gx-lg-0 gy-4">
-
-                <div class="col-lg-4">
-
-                    <div class="info-container d-flex flex-column align-items-center justify-content-center">
-                        <div class="info-item d-flex">
-                            <i class="bi bi-geo-alt flex-shrink-0"></i>
-                            <div>
-                                <h4>Location:</h4>
-                                <p>Pakistan,Punjab, Sialkot</p>
-                            </div>
-                        </div><!-- End Info Item -->
-
-                        <div class="info-item d-flex">
-                            <i class="bi bi-envelope flex-shrink-0"></i>
-                            <div>
-                                <h4>Email:</h4>
-                                <p>eventbookingsystem@gmail.com</p>
-                            </div>
-                        </div><!-- End Info Item -->
-
-                        <div class="info-item d-flex">
-                            <i class="bi bi-phone flex-shrink-0"></i>
-                            <div>
-                                <h4>Call:</h4>
-                                <p>+92 3439 55488 55</p>
-                            </div>
-                        </div><!-- End Info Item -->
-
-                        <div class="info-item d-flex">
-                            <i class="bi bi-clock flex-shrink-0"></i>
-                            <div>
-                                <h4>Open Hours:</h4>
-                                <p>Mon-Sun: 7AM - 23PM</p>
-                            </div>
-                        </div><!-- End Info Item -->
-                    </div>
-
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="img-border">
+                    <img class="img-fluid" src="~/new-theme/img/feature.jpg" alt="">
                 </div>
-
-                <div class="col-lg-8">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                        <div class="row">
-                            <div class="col-md-6 form-group">
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                            </div>
-                            <div class="col-md-6 form-group mt-3 mt-md-0">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                            </div>
-                        </div>
-                        <div class="form-group mt-3">
-                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                        </div>
-                        <div class="form-group mt-3">
-                            <textarea class="form-control" name="message" rows="7" placeholder="Message" required></textarea>
-                        </div>
-                        <div class="my-3">
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
-                        </div>
-                        <div class="text-center"><button type="submit">Send Message</button></div>
-                    </form>
-                </div><!-- End Contact Form -->
-
             </div>
+        </div>
+    </div>
+</div>
+<!-- Feature End -->
+<!-- Project Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h6 class="section-title bg-white text-center text-primary px-3">Our Projects</h6>
+            <h1 class="display-6 mb-4">Learn More About Our Complete Projects</h1>
+        </div>
+        <div class="owl-carousel project-carousel wow fadeInUp" data-wow-delay="0.1s">
+            @foreach (var item in services)
+            {
+                <div class="project-item border rounded h-100 p-4" data-dot="0@(serviceCounter)">
+                    <div class="position-relative mb-4">
+                        <img class="img-fluid rounded" src="~/new-theme/img/project-1.jpg" alt="">
+                        <a href="img/project-1.jpg" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
+                    </div>
+                    <h6>@item.Name</h6>
+                    <span>@item.Detail</span>
+                </div>
+                serviceCounter++;
+            }
+            
+
 
         </div>
-    </section><!-- End Contact Section -->
-
-
-</main><!-- End #main -->
+    </div>
+</div>
+<!-- Project End -->
+<!-- Team Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h6 class="section-title bg-white text-center text-primary px-3">Our Team</h6>
+            <h1 class="display-6 mb-4">We Are A Creative Team For Your Dream Project</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="team-item text-center p-4">
+                    <img class="img-fluid border rounded-circle w-75 p-2 mb-4" src="~/new-theme/img/team-1.jpg" alt="">
+                    <div class="team-text">
+                        <div class="team-title">
+                            <h5>Full Name</h5>
+                            <span>Designation</span>
+                        </div>
+                        <div class="team-social">
+                            <a class="btn btn-square btn-primary rounded-circle" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square btn-primary rounded-circle" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square btn-primary rounded-circle" href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item text-center p-4">
+                    <img class="img-fluid border rounded-circle w-75 p-2 mb-4" src="~/new-theme/img/team-2.jpg" alt="">
+                    <div class="team-text">
+                        <div class="team-title">
+                            <h5>Full Name</h5>
+                            <span>Designation</span>
+                        </div>
+                        <div class="team-social">
+                            <a class="btn btn-square btn-primary rounded-circle" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square btn-primary rounded-circle" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square btn-primary rounded-circle" href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="team-item text-center p-4">
+                    <img class="img-fluid border rounded-circle w-75 p-2 mb-4" src="~/new-theme/img/team-3.jpg" alt="">
+                    <div class="team-text">
+                        <div class="team-title">
+                            <h5>Full Name</h5>
+                            <span>Designation</span>
+                        </div>
+                        <div class="team-social">
+                            <a class="btn btn-square btn-primary rounded-circle" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square btn-primary rounded-circle" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square btn-primary rounded-circle" href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Team End -->
+<!-- Testimonial Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h6 class="section-title bg-white text-center text-primary px-3">Testimonial</h6>
+            <h1 class="display-6 mb-4">What Our Clients Say!</h1>
+        </div>
+        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+            <div class="testimonial-item bg-light rounded p-4">
+                <div class="d-flex align-items-center mb-4">
+                    <img class="flex-shrink-0 rounded-circle border p-1" src="~/new-theme/img/testimonial-1.jpg" alt="">
+                    <div class="ms-4">
+                        <h5 class="mb-1">Client Name</h5>
+                        <span>Profession</span>
+                    </div>
+                </div>
+                <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+            </div>
+            <div class="testimonial-item bg-light rounded p-4">
+                <div class="d-flex align-items-center mb-4">
+                    <img class="flex-shrink-0 rounded-circle border p-1" src="~/new-theme/img/testimonial-2.jpg" alt="">
+                    <div class="ms-4">
+                        <h5 class="mb-1">Client Name</h5>
+                        <span>Profession</span>
+                    </div>
+                </div>
+                <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+            </div>
+            <div class="testimonial-item bg-light rounded p-4">
+                <div class="d-flex align-items-center mb-4">
+                    <img class="flex-shrink-0 rounded-circle border p-1" src="~/new-theme/img/testimonial-3.jpg" alt="">
+                    <div class="ms-4">
+                        <h5 class="mb-1">Client Name</h5>
+                        <span>Profession</span>
+                    </div>
+                </div>
+                <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+            </div>
+            <div class="testimonial-item bg-light rounded p-4">
+                <div class="d-flex align-items-center mb-4">
+                    <img class="flex-shrink-0 rounded-circle border p-1" src="~/new-theme/img/testimonial-4.jpg" alt="">
+                    <div class="ms-4">
+                        <h5 class="mb-1">Client Name</h5>
+                        <span>Profession</span>
+                    </div>
+                </div>
+                <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Testimonial End -->

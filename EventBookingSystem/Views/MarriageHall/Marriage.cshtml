@@ -3,113 +3,126 @@
 @{
     List<Servicess> ser = (List<Servicess>)ViewBag.services; //casting or converting into services list
 }
-<section id="_contact" class="contact">
-    <div class="container" data-aos="fade-up">
-        <div class="row gx-lg-0 gy-4">
-            <div class="col-lg-12">
-                <h2 class="text-center">MarriageHall</h2><br />
-                <form action="/MarriageHall/Save" id="marriageHallForm" method="post" role="form" class="php-email-form">
-                    <div class="row">
-                        <input type="hidden" asp-for="Id" />
-                        <div class="col-md-4 form-group">
-                            <label for="Name">Name</label>
-                            <input asp-for="Name" class="form-control" placeholder="Enter Your Name" required>
-                        </div>
-                        <div class="col-md-4 form-group mt-3 mt-md-0">
-                            <label for="Phone">  Phone</label>
-                            <input asp-for="Phone" class="form-control" placeholder=" Enter Your Phone" required>
-                        </div>
-                        <div class="col-md-4 form-group mt-6 mt-md-0">
-                            <label for="Location">Location</label>
-                            <input asp-for="Location" class="form-control" placeholder=" Enter Your Location" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        @* <div class="col-md-4 form-group">
-                            <label for="Price">Price</label>
-                            <input asp-for="Price" class="form-control" placeholder=" Enter Your Price" required>
-                        </div> *@
-                        <div class="col-md-4 form-group mt-3 mt-md-0">
-                            <label for="Details">Detail</label>
-                            <input asp-for="Details" class="form-control" placeholder="Enter Your Details" required>
-                        </div>
+
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-info d-flex justify-content-between align-items-center">
+            <h2>Marriage Hall</h2>
+        </div>
+        <div class="card-body">
+            <section id="_contact" class="contact">
+                <div class="container" data-aos="fade-up">
+                    <div class="row gx-lg-0 gy-4">
+                        <div class="col-lg-12">
+                            <h2 class="text-center">MarriageHall</h2><br />
+                            <form action="/MarriageHall/Save" id="marriageHallForm" method="post" role="form" class="php-email-form">
+                                <div class="row">
+                                    <input type="hidden" asp-for="Id" />
+                                    <div class="col-md-4 form-group">
+                                        <label for="Name">Name</label>
+                                        <input asp-for="Name" class="form-control" placeholder="Enter Your Name" required>
+                                    </div>
+                                    <div class="col-md-4 form-group mt-3 mt-md-0">
+                                        <label for="Phone">  Phone</label>
+                                        <input asp-for="Phone" class="form-control" placeholder=" Enter Your Phone" required>
+                                    </div>
+                                    <div class="col-md-4 form-group mt-6 mt-md-0">
+                                        <label for="Location">Location</label>
+                                        <input asp-for="Location" class="form-control" placeholder=" Enter Your Location" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    @* <div class="col-md-4 form-group">
+                                    <label for="Price">Price</label>
+                                    <input asp-for="Price" class="form-control" placeholder=" Enter Your Price" required>
+                                    </div> *@
+                                    <div class="col-md-4 form-group mt-3 mt-md-0">
+                                        <label for="Details">Detail</label>
+                                        <input asp-for="Details" class="form-control" placeholder="Enter Your Details" required>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 pull-right">
+                                        <input type="button" id="btnAddNew" class="btn btn-primary" value="Add" />
+                                    </div>
+                                    <br />
+                                    <div class="col-md-12">
+                                        <table id="tblDetail" class="table table-bordered table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <td>Service</td>
+                                                    <td>Price</td>
+                                                    <td></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model != null && Model.Id > 0 && Model.MarriageHallServices != null && Model.MarriageHallServices.Count > 0)
+                                                {
+                                                    foreach (var item in Model.MarriageHallServices)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                <input type="hidden" class="hallServiceId" value="@item.Id" />
+                                                                <select class="form-control serviceId">
+                                                                    <option value="0">Select Service</option>
+                                                                    @foreach (var service in ser)
+                                                                    {
+                                                                        if (service.Id == item.ServiceId)
+                                                                        {
+                                                                            <option value="@service.Id" selected>@service.Name</option>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <option value="@service.Id">@service.Name</option>
+                                                                        }
+                                                                    }
+                                                                </select>
+                                                            </td>
+                                                            <td><input type="text" value="@item.Price" class="form-control price" /> </td>
+                                                            <td>
+                                                                <button type="button" class="btn btn-danger delete">Delete</button>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <input type="hidden" class="hallServiceId" />
+                                                            <select class="form-control serviceId">
+                                                                <option value="0">Select Service</option>
+                                                                @foreach (var item in ser)
+                                                                {
+                                                                    <option value="@item.Id">@item.Name</option>
+                                                                }
+                                                            </select>
+                                                        </td>
+                                                        <td><input type="text" class="form-control price" /> </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-danger delete">Delete</button>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="text-left"><button type="submit">Save</button></div>
+                            </form>
+                        </div><!-- End Contact Form -->
+
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-12 pull-right">
-                            <input type="button" id="btnAddNew" class="btn btn-primary" value="Add" />
-                        </div>
-                        <br />
-                        <div class="col-md-12">
-                            <table id="tblDetail" class="table table-bordered table-sm">
-                                <thead>
-                                    <tr>
-                                        <td>Service</td>
-                                        <td>Price</td>
-                                        <td></td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if (Model != null && Model.Id > 0 && Model.MarriageHallServices != null && Model.MarriageHallServices.Count > 0)
-                                    {
-                                        foreach (var item in Model.MarriageHallServices)
-                                        {
-                                            <tr>
-                                                <td>
-                                                    <input type="hidden" class="hallServiceId" value="@item.Id" />
-                                                    <select class="form-control serviceId">
-                                                        <option value="0">Select Service</option>
-                                                        @foreach (var service in ser)
-                                                        {
-                                                            if (service.Id == item.ServiceId)
-                                                            {
-                                                                <option value="@service.Id" selected>@service.Name</option>
-                                                            }
-                                                            else
-                                                            {
-                                                                <option value="@service.Id">@service.Name</option>
-                                                            }
-                                                        }
-                                                    </select>
-                                                </td>
-                                                <td><input type="text" value="@item.Price" class="form-control price" /> </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-danger delete">Delete</button>
-                                                </td>
-                                            </tr>
-                                        }
-                                    }
-                                    else
-                                    {
-                                        <tr>
-                                            <td>
-                                                <input type="hidden" class="hallServiceId" />
-                                                <select class="form-control serviceId">
-                                                    <option value="0">Select Service</option>
-                                                    @foreach (var item in ser)
-                                                    {
-                                                        <option value="@item.Id">@item.Name</option>
-                                                    }
-                                                </select>
-                                            </td>
-                                            <td><input type="text" class="form-control price" /> </td>
-                                            <td>
-                                                <button type="button" class="btn btn-danger delete">Delete</button>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="text-left"><button type="submit">Save</button></div>
-                </form>
-            </div><!-- End Contact Form -->
+                </div>
+            </section><!-- End Contact Section -->
 
         </div>
-
     </div>
-</section><!-- End Contact Section -->
+</div>
+
 <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 

@@ -9,7 +9,9 @@ public partial class Servicess
 
     public string Name { get; set; } = null!;
 
-    public int Price { get; set; }
+    public string? ImageUrl { get; set; }
+
+    public string? Detail { get; set; }
 
     public virtual ICollection<MarriageHallService> MarriageHallServices { get; set; } = new List<MarriageHallService>();
 }
