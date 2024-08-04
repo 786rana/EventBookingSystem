@@ -22,6 +22,8 @@ namespace EventBookingSystem.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+            var hall = _db.MarriageHalls.ToList();
+            ViewBag.MarriageHall = hall;
             if (user.Email == "admin@gmail.com")
             {
                 List<Order> orders = _db.Orders.Include(x => x.User).ToList();
@@ -38,6 +40,8 @@ namespace EventBookingSystem.Controllers
             ViewBag.services = _db.Servicesses.ToList();
             var marriageHalls = _db.MarriageHalls.ToList();
             ViewBag.MarriageHalls = new SelectList(marriageHalls, "Id", "Name");
+           
+            ViewBag.MarriageHall = marriageHalls;
             return View();
         }
         public IActionResult Edit(int Id, string type = "")
@@ -48,6 +52,7 @@ namespace EventBookingSystem.Controllers
             ViewBag.MarriageHalls = new SelectList(marriageHalls, "Id", "Name");
             ViewBag.services = _db.Servicesses.ToList();
             ViewBag.Type = type;
+            ViewBag.MarriageHall = marriageHalls;
             return View("Create", order);
         }
         public IActionResult Details(int Id)
@@ -57,6 +62,7 @@ namespace EventBookingSystem.Controllers
             var marriageHalls = _db.MarriageHalls.ToList();
             ViewBag.MarriageHalls = new SelectList(marriageHalls, "Id", "Name");
             ViewBag.services = _db.Servicesses.ToList();
+            ViewBag.MarriageHall = marriageHalls;
             return View(order);
         }
         public IActionResult Payment(int Id)
@@ -66,6 +72,8 @@ namespace EventBookingSystem.Controllers
             var marriageHalls = _db.MarriageHalls.ToList();
             ViewBag.MarriageHalls = new SelectList(marriageHalls, "Id", "Name"); 
             ViewBag.services = _db.Servicesses.ToList();
+            
+            ViewBag.MarriageHall = marriageHalls;
             return View(order);
         }
         [HttpPost]

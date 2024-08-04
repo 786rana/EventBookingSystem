@@ -79,6 +79,8 @@ namespace EventBookingSystem.Controllers
                 var users = _db.Users.ToList();
                 return View(users);
             }
+            var hall = _db.MarriageHalls.ToList();
+            ViewBag.MarriageHall = hall;
             return RedirectToAction("Index", "Home");
         }
 

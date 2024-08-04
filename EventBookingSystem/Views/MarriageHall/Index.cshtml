@@ -19,6 +19,7 @@
                         <td>Phone</td>
                         <td>Location</td>
                         <td>Detail</td>
+                        <td>Image</td>
                         <td>Actions:</td>
 
                     </tr>
@@ -32,6 +33,7 @@
                             <td>@Ebs.Phone</td>
                             <td>@Ebs.Location</td>
                             <td>@Ebs.Details</td>
+                            <td><img src="@Ebs.ImageUrl" style="width:100px;"> </td>
                             <td>
                                 <a href="/MarriageHall/Edit?Id=@Ebs.Id"><input type="button" value="Edit" class="btn  btn-primary" /></a>
                                 <a href="/MarriageHall/Delete?Id=@Ebs.Id"><input type="button" value="Delete" class="btn btn-danger" /></a>

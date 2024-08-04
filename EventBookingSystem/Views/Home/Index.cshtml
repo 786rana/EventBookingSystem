@@ -72,29 +72,29 @@
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="fact-item bg-light rounded text-center h-100 p-5">
                     <i class="fa fa-certificate fa-4x text-primary mb-4"></i>
-                    <h5 class="mb-3">Years Experience</h5>
-                    <h1 class="display-5 mb-0" data-toggle="counter-up">1234</h1>
+                    <h5 class="mb-3">Total Marriage Hall</h5>
+                    <h1 class="display-5 mb-0" data-toggle="counter-up">@ViewBag.TotalMarriageHall</h1>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="fact-item bg-light rounded text-center h-100 p-5">
                     <i class="fa fa-users-cog fa-4x text-primary mb-4"></i>
-                    <h5 class="mb-3">Team Members</h5>
-                    <h1 class="display-5 mb-0" data-toggle="counter-up">1234</h1>
+                    <h5 class="mb-3">Services</h5>
+                    <h1 class="display-5 mb-0" data-toggle="counter-up">@ViewBag.TotalServices</h1>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="fact-item bg-light rounded text-center h-100 p-5">
-                    <i class="fa fa-users fa-4x text-primary mb-4"></i>
-                    <h5 class="mb-3">Satisfied Clients</h5>
-                    <h1 class="display-5 mb-0" data-toggle="counter-up">1234</h1>
+                    <i class="fa fa-check fa-4x text-primary mb-4"></i>
+                    <h5 class="mb-3">Booked Hall</h5>
+                    <h1 class="display-5 mb-0" data-toggle="counter-up">@ViewBag.BookedHall</h1>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
                 <div class="fact-item bg-light rounded text-center h-100 p-5">
-                    <i class="fa fa-check fa-4x text-primary mb-4"></i>
-                    <h5 class="mb-3">Projects Done</h5>
-                    <h1 class="display-5 mb-0" data-toggle="counter-up">1234</h1>
+                    <i class="fa fa-users fa-4x text-primary mb-4"></i>
+                    <h5 class="mb-3">Customers</h5>
+                    <h1 class="display-5 mb-0" data-toggle="counter-up">@ViewBag.TotalUsers</h1>
                 </div>
             </div>
         </div>
@@ -142,7 +142,7 @@
             {
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <a class="service-item d-block rounded text-center h-100 p-4" href="/MarriageHall/Detail/@item.Id">
-                        <img class="img-fluid rounded mb-4" src="~/new-theme/img/service-1.jpg" alt="">
+                        <img class="img-fluid rounded mb-4" src="@item.ImageUrl" alt="">
                         <h4 class="mb-0">@item.Name</h4>
                     </a>
                 </div>
@@ -220,8 +220,8 @@
             {
                 <div class="project-item border rounded h-100 p-4" data-dot="0@(serviceCounter)">
                     <div class="position-relative mb-4">
-                        <img class="img-fluid rounded" src="~/new-theme/img/project-1.jpg" alt="">
-                        <a href="img/project-1.jpg" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
+                        <img class="img-fluid rounded" src="@item.ImageUrl" alt="">
+                        <a href="@item.ImageUrl" data-lightbox="project"><i class="fa fa-eye fa-2x"></i></a>
                     </div>
                     <h6>@item.Name</h6>
                     <span>@item.Detail</span>
@@ -248,7 +248,7 @@
                     <img class="img-fluid border rounded-circle w-75 p-2 mb-4" src="~/new-theme/img/team-1.jpg" alt="">
                     <div class="team-text">
                         <div class="team-title">
-                            <h5>Full Name</h5>
+                            <h5>Ehtisham</h5>
                             <span>Designation</span>
                         </div>
                         <div class="team-social">
@@ -264,7 +264,7 @@
                     <img class="img-fluid border rounded-circle w-75 p-2 mb-4" src="~/new-theme/img/team-2.jpg" alt="">
                     <div class="team-text">
                         <div class="team-title">
-                            <h5>Full Name</h5>
+                            <h5>Rafaqat Naseer</h5>
                             <span>Designation</span>
                         </div>
                         <div class="team-social">
@@ -280,7 +280,7 @@
                     <img class="img-fluid border rounded-circle w-75 p-2 mb-4" src="~/new-theme/img/team-3.jpg" alt="">
                     <div class="team-text">
                         <div class="team-title">
-                            <h5>Full Name</h5>
+                            <h5>Saif Ali</h5>
                             <span>Designation</span>
                         </div>
                         <div class="team-social">

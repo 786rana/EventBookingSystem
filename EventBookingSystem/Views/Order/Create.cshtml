@@ -19,6 +19,7 @@
                             <form action="/Order/Order" id="mForm" method="post" role="form" class="php-email-form">
                                 <div class="row">
                                     <input type="hidden" asp-for="Id" />
+                                    <input type="hidden" asp-for="UserId" />
                                     <div class="col-md-4 form-group">
                                         <label for="Total">Marriage Hall</label>
                                         <select asp-for="MarriageHallId" asp-items="ViewBag.MarriageHalls" class="form-control">

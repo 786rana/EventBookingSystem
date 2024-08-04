@@ -1,0 +1,71 @@
+﻿@model EventBookingSystem.Models.MarriageHall
+
+
+<!-- Feature Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="h-100">
+                    <h3 class="section-title bg-white text-start text-primary pe-3">@Model.Name</h3>
+                    <p class="mb-4" style="font-size:20px;">@Model.Details</p>
+                    <table class="table table-border table-responsive">
+                        <tr>
+                            <td><h4>Name</h4></td>
+                            <td colspan="3">
+                                @Html.DisplayFor(x=>x.Name)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h4>Phone</h4></td>
+                            <td colspan="3">
+                                @Html.DisplayFor(x=>x.Phone)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h4>Location</h4></td>
+                            <td colspan="3">
+                                @Html.DisplayFor(x=>x.Location)
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="img-border">
+                    <img class="img-fluid" src="@Model.ImageUrl" alt="">
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="row g-5">
+            <div class="card" style="padding:inherit;">
+                <div class="card-header bg-info d-flex justify-content-between align-items-center">
+                    <h2>Service Details</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table table-responsive table-border">
+                        <thead>
+                            <tr>
+                                <th>Service</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.MarriageHallServices)
+                            {
+                                <tr>
+                                    <td>@item.Service.Name</td>
+                                    <td>@item.Price</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Feature End -->

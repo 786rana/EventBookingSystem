@@ -22,6 +22,8 @@
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
+                        <th>Detail</th>
+                        <th>Image</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -31,6 +33,8 @@
                         <tr>
                             <td>@Ebs.Id</td>
                             <td>@Ebs.Name</td>
+                            <td>@Ebs.Detail</td>
+                            <td><img src="@Ebs.ImageUrl" style="width:100px;"> </td>
                             <td>
                                 <a href="/Services/Edit?Id=@Ebs.Id">
                                     <input type="button" value="Edit" class="btn btn-primary" />
