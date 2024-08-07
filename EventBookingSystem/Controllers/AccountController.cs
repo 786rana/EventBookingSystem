@@ -77,10 +77,11 @@ namespace EventBookingSystem.Controllers
             if (x.Email == "admin@gmail.com")
             {
                 var users = _db.Users.ToList();
+                var hall = _db.MarriageHalls.ToList();
+                ViewBag.MarriageHall = hall;
                 return View(users);
             }
-            var hall = _db.MarriageHalls.ToList();
-            ViewBag.MarriageHall = hall;
+            
             return RedirectToAction("Index", "Home");
         }
 

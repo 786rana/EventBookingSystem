@@ -73,7 +73,6 @@
             <div class="col-lg-8 col-md-7 d-none d-lg-block">
                 <div class="row">
                     <div class="col-4">
-                        
                     </div>
                     <div class="col-4">
                         <div class="d-flex align-items-center justify-content-end">
@@ -82,7 +81,7 @@
                             </div>
                             <div class="ps-3">
                                 <p class="mb-2">Call Us</p>
-                                <h6 class="mb-0">+012 345 6789</h6>
+                                <h6 class="mb-0">+0346 6566 828</h6>
                             </div>
                         </div>
                     </div>
@@ -93,7 +92,7 @@
                             </div>
                             <div class="ps-3">
                                 <p class="mb-2">Email Us</p>
-                                <h6 class="mb-0">info@example.com</h6>
+                                <h6 class="mb-0">eventbooking@gmail.com</h6>
                             </div>
                         </div>
                     </div>
@@ -119,30 +118,49 @@
                 @if (user != null)
                 {
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Admin</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            @if (user.Email == "admin@gmail.com")
+                            {
+                                <text>Admin</text>
+                            }
+                            else if (user.Vendor)
+                            {
+                                <text>Vendor</text>
+                            }
+                            else
+                            {
+                                <text>Customer</text>
+                            }
+                        </a>
+
+
                         <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
-                            @if (user != null && user.Email == "admin@gmail.com")
+                            @if (user.Email == "admin@gmail.com")
                             {
                                 <a href="/Account/List" class="dropdown-item">Users</a>
+                                <a href="/Services/Index" class="dropdown-item">Services</a>
+                                <a href="/MarriageHall/Index" class="dropdown-item">Marriage Hall</a>
+                                <a href="/Order/Index" class="dropdown-item">Order</a>
                             }
-                            @if (user != null && (user.Vendor == true || user.Email == "admin@gmail.com"))
+                            else if (user.Vendor == true)
                             {
                                 <a href="/Services/Index" class="dropdown-item">Services</a>
-                                <a href="/MarriageHall/Index" class="dropdown-item">Marraige Hall</a>
+                                <a href="/MarriageHall/Index" class="dropdown-item">Marriage Hall</a>
                             }
-                            @if (user != null && (user.Vendor == false || user.Email == "admin@gmail.com"))
+                            else
                             {
                                 <a href="/Order/Index" class="dropdown-item">Order</a>
                             }
-
                         </div>
                     </div>
                 }
+
 
                 <a href="/Home/Contact" class="nav-item nav-link">Contact Us</a>
             </div>
             @if (user != null)
             {
+                <span class="p-2" style="color:white;">@user.Name</span>
                 <a href="/Account/Logout" class="btn btn-sm btn-light rounded-pill py-2 px-4 d-none d-lg-block">Logout</a>
             }
             else
@@ -160,9 +178,9 @@
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-light mb-4">Address</h5>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Sialkot, Pakistan</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+03429287899</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>eventbooking@gmail.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-square btn-outline-secondary rounded-circle me-1" href="#"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-square btn-outline-secondary rounded-circle me-1" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -193,14 +211,7 @@
 
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-light mb-4">Newsletter</h5>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                    <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control bg-transparent border-secondary w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-                    </div>
-                </div>
+
             </div>
         </div>
         <div class="container-fluid copyright">
