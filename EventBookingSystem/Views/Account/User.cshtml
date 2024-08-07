@@ -7,120 +7,91 @@
 <html>
 
 <head>
-	<title>Event Booking System Registeration</title>
-
-<style>
-
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #008374;
-    }
-    .container {
-        max-width: 400px;
-        margin: 50px auto;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    h2 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    form {
-        margin-top: 20px;
-    }
-    .form-group {
-        margin-bottom: 20px;
-    }
-    .form{
-      display: flex;
-    }
-    label {
-        display: block;
-        font-weight: bold;
-    }
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-    input[type="submit"] {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-        width: 100%;
-    }
-    input[type="submit"]:hover {
-        background-color: #0056b3;
-    }
-    .signin-link {
-      display: inline;
-        text-align: center;
-        margin-top: 20px;
-    }
-    .signin-link a {
-        color: #007bff;
-        text-decoration: none;
-    }
-    .cancel{
-      color: red;
-    }
-    .signup{
-      color: rgb(53, 53, 173);
-    }
-</style>
+    <title>Event Booking System Registration</title>
+    <link rel="stylesheet" href="~/theme/login.css">
+    <link href="~/new-theme/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/new-theme/font/bootstrap-icons.css" rel="stylesheet" />
 </head>
 <body>
 
-<div class="container">
-    <h2>Sign Up</h2>
-      <p style="text-align: center;";>Please fill in this form to create an account.</p>
-      <hr>
-        <p style="color:red">@ViewBag.Error</p>
-    <form action="/Account/User" method="post">
-        <div class="form-group">
-            <label for="Name">Full Name:</label>
-            <input asp-for="Name" placeholder="Enter your Name" required>
-        </div>
-        <div class="form-group">
-            <label for="Email">Email:</label>
-            <input asp-for="Email" placeholder="Enter your Email"  required>
-        </div>
-        <div class="form-group">
-            <label for="Password">Password:</label>
-            <input asp-for="Password" placeholder="Enter your Password"  required>
-        </div>
-        <div class="form-group">
-            <label for="Phone">Phone No:</label>
-            <input asp-for="Phone" placeholder="Enter your Phone"  required>
-        </div>
-        <div class="form-group">
-            <label for="Address">Address:</label>
-            <input asp-for="Address" placeholder="Enter your Address" required>
-        </div>
-        <div class="form-group">
-                <input type="checkbox" asp-for="Vendor" /> Is Vender    
-            </div>
-       
-        <div class="form">
-                <input type="submit" value="Cancel" style="background-color: #008374;"><input type="submit" value="Sign Up" style="background-color:#008374;">
-        </div>
-        <p>Already have an account? 
-          <a href="/Account/Login" style="text-decoration: inline ; display: inline;">Sign In </a>
-        </p>
-    </form>
-</div>
+    <section class="vh-130" style="background-color: #eee;">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-lg-12 col-xl-11">
+                    <div class="card text-black" style="border-radius: 25px;">
+                        <div class="card-body p-md-5">
+                            <div class="row justify-content-center">
+                                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
+                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+
+                                    <p style="color:red">@ViewBag.Error</p>
+                                    <form class="mx-1 mx-md-4" action="/Account/User" method="post">
+
+                                        <div class="d-flex flex-row align-items-center mb-2">
+                                            <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="form3Example1c">Your Name</label>
+                                                <input asp-for="Name" type="text" id="form3Example1c" class="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-2">
+                                            <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="form3Example3c">Your Email</label>
+
+                                                <input asp-for="Email" type="email" id="form3Example3c" class="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-2">
+                                            <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="form3Example4c">Password</label>
+                                                <input asp-for="Password" type="password" id="form3Example4c" class="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-2">
+                                            <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="form3Example4cd">Phone</label>
+                                                <input asp-for="Phone" id="form3Example4cd" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center mb-3">
+                                            <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="form3Example4cd">Address</label>
+                                                <input asp-for="Address" id="form3Example4cd" class="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-check mb-1">
+                                            <input asp-for="Vendor" class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
+                                            <label class="form-check-label" for="form2Example3">
+                                                Is Vendor
+                                            </label>
+                                        </div>
+                                        <div class="mb-3 mb-lg-4">
+                                            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg">Register</button>
+                                        </div>
+                                        <div class="">
+                                            Already have an account? <a href="/Account/Login">Sign in</a>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                                         class="img-fluid" alt="Sample image">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
+
 </html>
