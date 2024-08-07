@@ -40,7 +40,7 @@ namespace EventBookingSystem.Controllers
             ViewBag.services = _db.Servicesses.ToList();
             var marriageHalls = _db.MarriageHalls.ToList();
             ViewBag.MarriageHalls = new SelectList(marriageHalls, "Id", "Name");
-           
+
             ViewBag.MarriageHall = marriageHalls;
             return View();
         }
@@ -65,14 +65,16 @@ namespace EventBookingSystem.Controllers
             ViewBag.MarriageHall = marriageHalls;
             return View(order);
         }
+
+        
         public IActionResult Payment(int Id)
         {
             var order = _db.Orders.Include(x => x.OrderDetails).Where(x => x.Id == Id).FirstOrDefault();
 
             var marriageHalls = _db.MarriageHalls.ToList();
-            ViewBag.MarriageHalls = new SelectList(marriageHalls, "Id", "Name"); 
+            ViewBag.MarriageHalls = new SelectList(marriageHalls, "Id", "Name");
             ViewBag.services = _db.Servicesses.ToList();
-            
+
             ViewBag.MarriageHall = marriageHalls;
             return View(order);
         }
@@ -81,20 +83,39 @@ namespace EventBookingSystem.Controllers
         {
             var oldOrder = _db.Orders.Include(x => x.OrderDetails).Where(x => x.Id == order.Id).FirstOrDefault();
             oldOrder.PaidAmount = order.PaidAmount;
-            oldOrder.BalanceAmount= order.BalanceAmount;
+            oldOrder.BalanceAmount = order.BalanceAmount;
 
             _db.Orders.Update(oldOrder);
             _db.SaveChanges();
-            return RedirectToAction("Index","Order");
-        
+            return RedirectToAction("Index", "Order");
+
         }
-        public IActionResult Order(Order model)
+        [HttpPost]
+        public IActionResult Create(Order model)
         {
             User x = HttpContext.Session.GetObjectFromJson<User>("login");
             if (x == null)
             {
                 return RedirectToAction("Index", "Home");
             }
+            var overlappingSlots = _db.Orders.Where(b => b.MarriageHallId == model.MarriageHallId && b.StartDate < model.EndDate && b.EndDate > model.StartDate).ToList();
+
+            if (overlappingSlots.Any())
+            {
+
+
+                ViewBag.overlap = overlappingSlots;
+
+                var futureSlots = _db.Orders.Where(b => b.StartDate > DateTime.Now).OrderBy(b => b.StartDate).ToList();
+                ViewBag.futureSlots = futureSlots;
+
+                ViewBag.services = _db.Servicesses.ToList();
+                var marriageHalls = _db.MarriageHalls.ToList();
+                ViewBag.MarriageHalls = new SelectList(marriageHalls, "Id", "Name");
+                ViewBag.MarriageHall = marriageHalls;
+                return View(model);
+            }
+
             model.UserId = x.Id;
             model.CreatedDate = DateTime.Now;
             if (model.Id > 0)
@@ -119,6 +140,7 @@ namespace EventBookingSystem.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
     }
 }

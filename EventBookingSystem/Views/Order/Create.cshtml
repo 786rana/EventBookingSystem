@@ -2,6 +2,18 @@
 
 @{
     List<Servicess> ser = (List<Servicess>)ViewBag.services;
+
+    var overlapSlots = new List<Order>();
+    if (ViewBag.overlap!=null)
+    {
+        overlapSlots = (List<Order>)ViewBag.overlap;
+    }
+    var futureSlots = new List<Order>();
+    if (ViewBag.overlap != null)
+    {
+        futureSlots = (List<Order>)ViewBag.futureSlots;
+    }
+    
 }
 
 
@@ -15,8 +27,24 @@
                 <div class="container" data-aos="fade-up">
                     <div class="row gx-lg-0 gy-4">
                         <div class="col-lg-12">
-                            <h2 class="text-center">New Order</h2><br />
-                            <form action="/Order/Order" id="mForm" method="post" role="form" class="php-email-form">
+                            @if (overlapSlots.Any())
+                            {
+                                <h1 style="color:red;">Error: Overlap Slots</h1>
+                                foreach (var item in overlapSlots)
+                                {
+                                    <p style="color:red;">@item.StartDate  - @item.EndDate</p>
+                                }
+                            }
+                            @if (futureSlots.Any())
+                            {
+                                <h1 style="color:green">Future Booked Slots</h1>
+                                foreach (var item in futureSlots)
+                                {
+                                    <p style="color:green">@item.StartDate  - @item.EndDate</p>
+                                }
+                            }
+
+                            <form action="/Order/Create" id="mForm" method="post" role="form" class="php-email-form">
                                 <div class="row">
                                     <input type="hidden" asp-for="Id" />
                                     <input type="hidden" asp-for="UserId" />

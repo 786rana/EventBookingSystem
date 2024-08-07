@@ -8,7 +8,36 @@
         user = JsonConvert.DeserializeObject<User>(x);
     }
 }
+<style>
+    .badge-primary {
+        color: #fff !important;
+        background-color: #007bff !important;
+    }
 
+    .badge-success {
+        color: #fff !important; background-color: #28a745 !important;
+    }
+
+    .badge-danger {
+        color: #fff !important;
+        background-color: #dc3545 !important;
+    }
+
+    .badge-info {
+        color: #fff !important;
+        background-color: #17a2b8 !important;
+    }
+
+    .badge-warning {
+        color: #212529 !important;
+        background-color: #ffc107 !important;
+    }
+
+    .badge-dark {
+        color: #fff !important;
+        background-color: #343a40 !important;
+    }
+</style>
 <div class="container mt-5">
     <div class="card">
         <div class="card-header bg-info d-flex justify-content-between align-items-center">
@@ -61,15 +90,15 @@
                             <td>
                                 @if (Ebs.BalanceAmount == Ebs.PaidAmount)
                                 {
-                                    <span class="badge text-bg-danger">UnPaid</span>
+                                    <span class="badge badge-danger">UnPaid</span>
                                 }
                                 else if (Ebs.PaidAmount == Ebs.NetAmount)
                                 {
-                                    <span class="badge text-bg-success">Paid</span>
+                                    <span class="badge badge-success" style="">Paid</span>
                                 }
                                 else if (Ebs.BalanceAmount > 0 && Ebs.PaidAmount > 0)
                                 {
-                                    <span class="badge text-bg-info">Partial Paid</span>
+                                    <span class="badge badge-info">Partial Paid</span>
                                 }
                             </td>
 
