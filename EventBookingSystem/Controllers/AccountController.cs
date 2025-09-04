@@ -24,14 +24,14 @@ namespace EventBookingSystem.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(User x)
-        {
-            User user = _db.Users.Where(m => m.Email == x.Email && m.Password == x.Password).FirstOrDefault();
+        public IActionResult Login(LoginDto users)
+            {
+            User user = _db.Users.Where(m => m.Email == users.Email && m.Password == users.Password).FirstOrDefault();
             if (ModelState.IsValid) { }
             if (user == null)
             {
                 ViewBag.error = "Incorrect Email or password";
-                return View(x);
+                return View(user);
             }
             else
             {
